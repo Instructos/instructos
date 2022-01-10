@@ -1,6 +1,10 @@
-# Boilermaker
+# Instructos
 
-_Good things come in pairs_
+Your comments here:
+[Instructos' Team Contract][teamcontract-yt]
+[teamcontract-yt]: https://docs.google.com/document/d/188p9GbswXsJtBTmDjZYGe_bzOqLaRm_w5KxxpZ7VsR0/edit#
+[Instructos' Establish Norms][establishnorms-yt]
+[establishnorms-yt]:https://docs.google.com/document/d/1plo2imGiDGdP-tF1gtFcaQ0oOzxzmBjsQpefx4-isu8/edit#heading=h.o5mu27u0ogz3
 
 Looking to mix up a backend with `express`/`sequelize` and a frontend with
 `react`/`redux`? That's `boilermaker`!
