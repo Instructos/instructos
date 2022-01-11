@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
+import {singleProduct} from '../store/singleProduct'
 
-const singleProd = () => {
-  const [product, setProduct] = useState(singleProduct)
+const singleProd = props => {
+  const [product, setProduct] = useState({})
+
+  const oneproduct = setProduct(singleProduct(props))
 
   return (
     <div>
