@@ -33,6 +33,22 @@ const dummyData = [
     instructor: 'Zach',
     imageUrl:
       'https://media.cntraveler.com/photos/5a7746e0aeb19b5730310bf7/16:9/w_2560,c_limit/Museum-of-Natural-History_AMNHD.-Finnin_2018_4.-Afr.jpg'
+  },
+
+  {
+    id: 4,
+    productName: 'EDM Dance Party',
+    instructor: 'Eric',
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRydLdpvDQzNOElh5QETfTqefE_OGHV8XE70A5S_7RMLMfW2B8kWvqhihrZzIYcuRtwlnA&usqp=CAU'
+  },
+
+  {
+    id: 5,
+    productName: 'Goat Yoga',
+    instructor: 'Andrea',
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzXHFm8ndhJVhBYfpdQSge6VL8byCDHfsyz8XLpV8jmx_zFBjU5HjffMQnMsYWiPxrUQM&usqp=CAU'
   }
 ]
 
@@ -49,7 +65,7 @@ const Home = () => {
       <Box sx={{display: 'flex', justifyContent: 'space-evenly'}}>
         {dummyData.map(product => {
           return (
-            <Card sx={{minWidth: 275}} key={product.id}>
+            <Card sx={{width: 275}} key={product.id}>
               <CardContent>
                 <Typography
                   sx={{fontSize: 14}}
@@ -75,11 +91,7 @@ const Home = () => {
       <Box sx={{display: 'flex', justifyContent: 'space-evenly'}}>
         {dummyData.map(product => {
           return (
-            <Card
-              font-family="Montserrat', sans-serif"
-              sx={{minWidth: 275}}
-              key={product.id}
-            >
+            <Card sx={{minWidth: 275}} key={product.id}>
               <CardContent>
                 <Typography
                   sx={{fontSize: 14}}
@@ -99,6 +111,60 @@ const Home = () => {
             </Card>
           )
         })}
+      </Box>
+
+      <h2>Reviews</h2>
+      <Box sx={{display: 'flex', justifyContent: 'space-evenly'}}>
+        <Card sx={{minWidth: 275}}>
+          <CardContent>
+            <Typography
+              sx={{fontSize: 14}}
+              color="text.secondary"
+              gutterBottom
+            />
+            <Typography variant="h5" component="div">
+              Review 1
+            </Typography>
+            <Typography sx={{mb: 1.5}} color="text.secondary">
+              "Really exciting narrative about the experience!"
+            </Typography>
+          </CardContent>
+          <CardActions />
+        </Card>
+
+        <Card sx={{minWidth: 275}}>
+          <CardContent>
+            <Typography
+              sx={{fontSize: 14}}
+              color="text.secondary"
+              gutterBottom
+            />
+            <Typography variant="h5" component="div">
+              Review 2
+            </Typography>
+            <Typography sx={{mb: 1.5}} color="text.secondary">
+              "Really exciting narrative about the experience!"
+            </Typography>
+          </CardContent>
+          <CardActions />
+        </Card>
+
+        <Card sx={{minWidth: 275}}>
+          <CardContent>
+            <Typography
+              sx={{fontSize: 14}}
+              color="text.secondary"
+              gutterBottom
+            />
+            <Typography variant="h5" component="div">
+              Review 3
+            </Typography>
+            <Typography sx={{mb: 1.5}} color="text.secondary">
+              "Really exciting narrative about the experience!"
+            </Typography>
+          </CardContent>
+          <CardActions />
+        </Card>
       </Box>
     </div>
   )
