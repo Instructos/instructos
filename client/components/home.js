@@ -1,5 +1,5 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {connect, useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {
   Box,
@@ -82,12 +82,14 @@ const dummyData = [
   }
 ]
 
+import {fetchAllProducts} from '../store/allProduct'
+
 const Home = () => {
-  const {products} = useSelector(state => {
-    return {
-      products: state.products
-    }
-  })
+  let products = useSelector(state => state.products)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchAllProducts())
+  }, [])
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -100,7 +102,7 @@ const Home = () => {
           margin: '10px'
         }}
       >
-        {dummyData.map(product => {
+        {products.map(product => {
           return (
             <Card sx={{maxWidth: 275}} key={product.id} className="card">
               <CardContent>
@@ -210,4 +212,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default connect(null)(Home)
