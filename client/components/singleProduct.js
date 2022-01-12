@@ -10,7 +10,7 @@ const SingleProduct = () => {
   useEffect(() => {
     dispatch(singleProduct())
   }, {})
-
+  console.log(product)
   return (
     <div id={product.id}>
       <img src={product.imageUrl} />
