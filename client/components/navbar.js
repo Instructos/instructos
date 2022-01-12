@@ -7,7 +7,8 @@ import ResponsiveAppBar from './UI/AppBar'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <ResponsiveAppBar />
+    {/* <ResponsiveAppBar /> */}
+    <nav>Instructos</nav>
     <hr />
   </div>
 )
