@@ -10,8 +10,11 @@ const Product = db.define('product', {
     }
   },
   imageUrl: {
-    type: Sequelize.imageUrl,
-    allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      isUrl: true
+    }
   },
   description: {
     type: Sequelize.STRING,
