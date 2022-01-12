@@ -1,19 +1,25 @@
-import React, {useState} from 'react'
-import {connect} from 'react-redux'
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import {singleProduct} from '../store/singleProduct'
 
-const singleProd = props => {
-  const [product, setProduct] = useState({})
+const SingleProduct = () => {
+  let product = useSelector(state => state.product)
 
-  const oneproduct = setProduct(singleProduct(props))
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    dispatch(singleProduct())
+  }, {})
+  console.log(product)
   return (
-    <div>
-      <img src={singleProduct.imageUrl} className="productImage" />
-      <div className="productName">{singleProduct.productName}</div>
-      <div className="instructor">{singleProduct.instructor}</div>
-      <div className="description">{singleProduct.description}</div>
-      <div className="reviews">hardcode this in later</div>
+    <div id={product.id}>
+      <img src={product.imageUrl} />
+      <h1>{product.productName}</h1>
+      <h2>{product.insturctor}</h2>
+      <h3>{product.description}</h3>
+      <div>reviews</div>
     </div>
   )
 }
+
+export default SingleProduct
