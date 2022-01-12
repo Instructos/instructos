@@ -19,3 +19,22 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.card {
+  margin: 2px;
+  border: #fba63b transparent 0.5px;
+  box-shadow: none;
+  justify-content: center;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.all-view-image {
+  width: 200px; /* width of container */
+  height: 200px; /* height of container */
+  object-fit: cover;
+}
