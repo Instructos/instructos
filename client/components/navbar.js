@@ -3,12 +3,11 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import ResponsiveAppBar from './UI/AppBar'
+import MenuAppBar from './UI/AppBar'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    {/* <ResponsiveAppBar /> */}
-    <nav>Instructos</nav>
+    <MenuAppBar />
     <hr />
   </div>
 )

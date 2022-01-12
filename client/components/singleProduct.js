@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
+import {useParams} from 'react-router-dom/cjs/react-router-dom.min'
 import {singleProduct} from '../store/singleProduct'
 
 const SingleProduct = () => {
   let product = useSelector(state => state.product)
 
   const dispatch = useDispatch()
-
+  const {id} = useParams()
   useEffect(() => {
-    dispatch(singleProduct())
+    dispatch(singleProduct(id))
   }, {})
   console.log(product)
   return (
