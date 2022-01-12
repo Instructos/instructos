@@ -10,7 +10,7 @@ import {
   Typography,
   IconButton
 } from '@material-ui/core'
-import {AddShoppingCart} from '@material-ui/icons'
+import {AddShoppingCart} from '@material-ui/core/Icon'
 import {makeStyles} from '@material-ui/core/styles'
 //dummy data
 let dummyData = [

@@ -1,15 +1,17 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
-import {createTheme, ThemeProvider} from '@mui/material/styles'
+import {
+  Box,
+  Grid,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  Container
+} from '@material-ui/core'
+import {createTheme, MuiThemeProvider} from '@material-ui/core/styles'
 
 const theme = createTheme({
   typography: {
@@ -88,7 +90,7 @@ const Home = () => {
   })
 
   return (
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <h2 color="primary">Featured Experiences</h2>
       <Box
         sx={{
@@ -109,11 +111,11 @@ const Home = () => {
                   {product.productName}
                 </Typography>
 
-                <Typography sx={{mb: 1.5}} color="text.secondary">
+                <Typography sx={{mb: 1.5}} color="secondary">
                   with {product.instructor}
                 </Typography>
 
-                <Typography sx={{mb: 1.5}} color="text.secondary">
+                <Typography sx={{mb: 1.5}} color="secondary">
                   ${product.price}
                 </Typography>
               </CardContent>
@@ -129,17 +131,13 @@ const Home = () => {
           return (
             <Card sx={{maxWidth: 275}} key={product.id} className="card">
               <CardContent>
-                <Typography
-                  sx={{fontSize: 14}}
-                  color="text.secondary"
-                  gutterBottom
-                >
+                <Typography sx={{fontSize: 14}} color="secondary" gutterBottom>
                   <img src={product.imageUrl} className="all-view-image" />
                 </Typography>
                 <Typography variant="h6" component="div">
                   {product.productName}
                 </Typography>
-                <Typography sx={{mb: 1.5}} color="text.secondary">
+                <Typography sx={{mb: 1.5}} color="secondary">
                   {product.instructor}
                 </Typography>
               </CardContent>
@@ -163,15 +161,11 @@ const Home = () => {
           className="card"
         >
           <CardContent>
-            <Typography
-              sx={{fontSize: 14}}
-              color="text.secondary"
-              gutterBottom
-            />
+            <Typography sx={{fontSize: 14}} color="secondary" gutterBottom />
             <Typography variant="h5" component="div">
               Review 1
             </Typography>
-            <Typography sx={{mb: 1.5}} color="text.secondary">
+            <Typography sx={{mb: 1.5}} color="secondary">
               "Really exciting narrative about the experience!"
             </Typography>
           </CardContent>
@@ -184,15 +178,11 @@ const Home = () => {
           className="card"
         >
           <CardContent>
-            <Typography
-              sx={{fontSize: 14}}
-              color="text.secondary"
-              gutterBottom
-            />
+            <Typography sx={{fontSize: 14}} color="secondary" gutterBottom />
             <Typography variant="h5" component="div">
               Review 2
             </Typography>
-            <Typography sx={{mb: 1.5}} color="text.secondary">
+            <Typography sx={{mb: 1.5}} color="secondary">
               "Really exciting narrative about the experience!"
             </Typography>
           </CardContent>
@@ -205,22 +195,18 @@ const Home = () => {
           className="card"
         >
           <CardContent>
-            <Typography
-              sx={{fontSize: 14}}
-              color="text.secondary"
-              gutterBottom
-            />
+            <Typography sx={{fontSize: 14}} color="secondary" gutterBottom />
             <Typography variant="h5" component="div">
               Review 3
             </Typography>
-            <Typography sx={{mb: 1.5}} color="text.secondary">
+            <Typography sx={{mb: 1.5}} color="secondary">
               "Really exciting narrative about the experience!"
             </Typography>
           </CardContent>
           <CardActions />
         </Card>
       </Box>
-    </ThemeProvider>
+    </MuiThemeProvider>
   )
 }
 
