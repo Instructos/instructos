@@ -1,6 +1,9 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
+import React, {useState} from 'react'
+import {connect, useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
+
+import fetchAllProducts from './allProducts'
+
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
@@ -9,7 +12,6 @@ import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import {flexbox} from '@mui/system'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
 
 const theme = createTheme({
@@ -81,148 +83,168 @@ const dummyData = [
   }
 ]
 
-const Home = () => {
-  const {products} = useSelector(state => {
-    return {
-      products: state.products
-    }
-  })
+import {allProduct} from '../store/allProduct'
 
-  return (
-    <ThemeProvider theme={theme}>
-      <h2 color="primary">Featured Experiences</h2>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          wrap: 'wrap',
-          margin: '10px'
-        }}
-      >
-        {dummyData.map(product => {
-          return (
-            <Card sx={{maxWidth: 275}} key={product.id} className="card">
-              <CardContent>
-                <Typography sx={{fontSize: 14}} gutterBottom>
-                  <img src={product.imageUrl} className="all-view-image" />
-                </Typography>
-                <Typography variant="h6" component="div">
-                  {product.productName}
-                </Typography>
+class Home extends React.Component {
+  // componentDidMount() {
+  //   this.props.fetchAllProducts()
+  // }
+  // const {products} = useSelector(state => {
+  //   return {
+  //     products: state.products
+  //   }
+  // })
+  render() {
+    console.log(this.props)
+    return (
+      <ThemeProvider theme={theme}>
+        <h2 color="primary">Featured Experiences</h2>
 
-                <Typography sx={{mb: 1.5}} color="text.secondary">
-                  with {product.instructor}
-                </Typography>
-
-                <Typography sx={{mb: 1.5}} color="text.secondary">
-                  ${product.price}
-                </Typography>
-              </CardContent>
-              <CardActions />
-            </Card>
-          )
-        })}
-      </Box>
-
-      <h2>Featured Instructors</h2>
-      <Box sx={{display: 'flex', justifyContent: 'space-evenly'}}>
-        {dummyData.map(product => {
-          return (
-            <Card sx={{maxWidth: 275}} key={product.id} className="card">
-              <CardContent>
-                <Typography
-                  sx={{fontSize: 14}}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  <img src={product.imageUrl} className="all-view-image" />
-                </Typography>
-                <Typography variant="h6" component="div">
-                  {product.productName}
-                </Typography>
-                <Typography sx={{mb: 1.5}} color="text.secondary">
-                  {product.instructor}
-                </Typography>
-              </CardContent>
-              <CardActions />
-            </Card>
-          )
-        })}
-      </Box>
-
-      <h2>Instructos Testimonials</h2>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          alignContent: 'center'
-        }}
-      >
-        <Card
-          sx={{minWidth: 275, display: 'flex', justifyContent: 'center'}}
-          style={{backgroundColor: '#fba63b'}}
-          className="card"
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            wrap: 'wrap',
+            margin: '10px'
+          }}
         >
-          <CardContent>
-            <Typography
-              sx={{fontSize: 14}}
-              color="text.secondary"
-              gutterBottom
-            />
-            <Typography variant="h5" component="div">
-              Review 1
-            </Typography>
-            <Typography sx={{mb: 1.5}} color="text.secondary">
-              "Really exciting narrative about the experience!"
-            </Typography>
-          </CardContent>
-          <CardActions />
-        </Card>
+          {dummyData.map(product => {
+            return (
+              <Card sx={{maxWidth: 275}} key={product.id} className="card">
+                <CardContent>
+                  <Typography sx={{fontSize: 14}} gutterBottom>
+                    <img src={product.imageUrl} className="all-view-image" />
+                  </Typography>
+                  <Typography variant="h6" component="div">
+                    {product.productName}
+                  </Typography>
 
-        <Card
-          sx={{minWidth: 275}}
-          style={{backgroundColor: '#fba63b'}}
-          className="card"
-        >
-          <CardContent>
-            <Typography
-              sx={{fontSize: 14}}
-              color="text.secondary"
-              gutterBottom
-            />
-            <Typography variant="h5" component="div">
-              Review 2
-            </Typography>
-            <Typography sx={{mb: 1.5}} color="text.secondary">
-              "Really exciting narrative about the experience!"
-            </Typography>
-          </CardContent>
-          <CardActions />
-        </Card>
+                  <Typography sx={{mb: 1.5}} color="text.secondary">
+                    with {product.instructor}
+                  </Typography>
 
-        <Card
-          sx={{minWidth: 275}}
-          style={{backgroundColor: '#fba63b'}}
-          className="card"
+                  <Typography sx={{mb: 1.5}} color="text.secondary">
+                    ${product.price}
+                  </Typography>
+                </CardContent>
+                <CardActions />
+              </Card>
+            )
+          })}
+        </Box>
+
+        <h2>Featured Instructors</h2>
+        <Box sx={{display: 'flex', justifyContent: 'space-evenly'}}>
+          {dummyData.map(product => {
+            return (
+              <Card sx={{maxWidth: 275}} key={product.id} className="card">
+                <CardContent>
+                  <Typography
+                    sx={{fontSize: 14}}
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    <img src={product.imageUrl} className="all-view-image" />
+                  </Typography>
+                  <Typography variant="h6" component="div">
+                    {product.productName}
+                  </Typography>
+                  <Typography sx={{mb: 1.5}} color="text.secondary">
+                    {product.instructor}
+                  </Typography>
+                </CardContent>
+                <CardActions />
+              </Card>
+            )
+          })}
+        </Box>
+
+        <h2>Instructos Testimonials</h2>
+
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            alignContent: 'center'
+          }}
         >
-          <CardContent>
-            <Typography
-              sx={{fontSize: 14}}
-              color="text.secondary"
-              gutterBottom
-            />
-            <Typography variant="h5" component="div">
-              Review 3
-            </Typography>
-            <Typography sx={{mb: 1.5}} color="text.secondary">
-              "Really exciting narrative about the experience!"
-            </Typography>
-          </CardContent>
-          <CardActions />
-        </Card>
-      </Box>
-    </ThemeProvider>
-  )
+          <Card
+            sx={{minWidth: 275, display: 'flex', justifyContent: 'center'}}
+            style={{backgroundColor: '#fba63b'}}
+            className="card"
+          >
+            <CardContent>
+              <Typography
+                sx={{fontSize: 14}}
+                color="text.secondary"
+                gutterBottom
+              />
+              <Typography variant="h5" component="div">
+                Review 1
+              </Typography>
+              <Typography sx={{mb: 1.5}} color="text.secondary">
+                "Really exciting narrative about the experience!"
+              </Typography>
+            </CardContent>
+            <CardActions />
+          </Card>
+
+          <Card
+            sx={{minWidth: 275}}
+            style={{backgroundColor: '#fba63b'}}
+            className="card"
+          >
+            <CardContent>
+              <Typography
+                sx={{fontSize: 14}}
+                color="text.secondary"
+                gutterBottom
+              />
+              <Typography variant="h5" component="div">
+                Review 2
+              </Typography>
+              <Typography sx={{mb: 1.5}} color="text.secondary">
+                "Really exciting narrative about the experience!"
+              </Typography>
+            </CardContent>
+            <CardActions />
+          </Card>
+
+          <Card
+            sx={{minWidth: 275}}
+            style={{backgroundColor: '#fba63b'}}
+            className="card"
+          >
+            <CardContent>
+              <Typography
+                sx={{fontSize: 14}}
+                color="text.secondary"
+                gutterBottom
+              />
+              <Typography variant="h5" component="div">
+                Review 3
+              </Typography>
+              <Typography sx={{mb: 1.5}} color="text.secondary">
+                "Really exciting narrative about the experience!"
+              </Typography>
+            </CardContent>
+            <CardActions />
+          </Card>
+        </Box>
+      </ThemeProvider>
+    )
+  }
 }
 
-export default Home
+const mapStateToProps = state => {
+  return {
+    products: state.products
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchAllProducts: () => dispatch(fetchAllProducts())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
