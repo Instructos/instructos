@@ -5,10 +5,10 @@ import axios from 'axios'
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 
 // action creator
-export const allProducts = product => {
+export const allProducts = products => {
   return {
     type: GET_ALL_PRODUCTS,
-    product
+    products
   }
 }
 
@@ -23,9 +23,10 @@ export const fetchAllProducts = () => {
     }
   }
 }
+const initialState = []
 
 // reducer
-export const allProductsReducer = (state = {}, action) => {
+export default function allProductsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
       return {...state, products: action.products}
