@@ -15,7 +15,7 @@ import {
   MuiThemeProvider,
   makeStyles
 } from '@material-ui/core/styles'
-import {AddShoppingCart} from '@material-ui/icons'
+//shooimport {AddShoppingCart} from '@material-ui/icons'
 
 const useStyles = makeStyles({
   root: {
@@ -92,9 +92,7 @@ const AllProducts = () => {
                     <Typography variant="h6" gutterBottom>
                       {product.productName}
                     </Typography>
-                    <Typography variant="h7" gutterBottom>
-                      $ {product.price}
-                    </Typography>
+                    <Typography gutterBottom>$ {product.price}</Typography>
                   </div>
                   <Typography variant="h6" gutterBottom color="secondary">
                     {' '}
@@ -104,7 +102,7 @@ const AllProducts = () => {
 
                 <CardActions disableSpacing className={classes.CardActions}>
                   <IconButton aria-label="Add to Cart">
-                    <AddShoppingCart />
+                    {/* <AddShoppingCart /> */}
                   </IconButton>
                 </CardActions>
               </Card>

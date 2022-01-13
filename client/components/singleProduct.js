@@ -44,7 +44,8 @@ const SingleProduct = () => {
   const {id} = useParams()
   useEffect(() => {
     dispatch(singleProduct(id))
-  }, {})
+  }, [])
+
   console.log(product)
   return (
     <MuiThemeProvider theme={theme}>
@@ -73,13 +74,6 @@ const SingleProduct = () => {
         </div>
       </Box>
     </MuiThemeProvider>
-    // <div id={product.id}>
-    //   <img src={product.imageUrl} />
-    //   <h1>{product.productName}</h1>
-    //   <h2>{product.instructor}</h2>
-    //   <h3>{product.description}</h3>
-    //   <div>reviews</div>
-    // </div>
   )
 }
 

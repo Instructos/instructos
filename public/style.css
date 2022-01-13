@@ -55,6 +55,8 @@ img {
   /* flex-wrap: wrap; */
   justify-content: space-around;
   min-height: min-content;
+}
+
 .single-view-image {
   width: 90vw;
   height: 45vw;
@@ -68,8 +70,9 @@ img {
   width: 90vw;
   height: 45vw;
   background-color: white;
+}
+
 .allProductImg {
   height: 0px;
   padding-top: 56.25%;
-
 }
