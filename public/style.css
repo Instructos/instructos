@@ -38,3 +38,8 @@ img {
   height: 200px; /* height of container */
   object-fit: cover;
 }
+
+.allProductImg {
+  height: 0px;
+  padding-top: 56.25%;
+}
