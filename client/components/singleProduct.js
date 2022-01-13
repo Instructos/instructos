@@ -13,7 +13,6 @@ import {
   Container
 } from '@material-ui/core'
 import {createTheme, MuiThemeProvider} from '@material-ui/core/styles'
-import {fontSize} from '@material-ui/system'
 
 const theme = createTheme({
   typography: {
@@ -21,18 +20,8 @@ const theme = createTheme({
   },
   palette: {
     text: {
-      primary: {
-        main: '#2eb3b4'
-      },
-      secondary: {
-        main: '#fba63b'
-      }
-    },
-    primary: {
-      main: '#2eb3b4'
-    },
-    secondary: {
-      main: '#fba63b'
+      primary: '#fba63b',
+      secondary: '#2eb3b4'
     }
   }
 })
@@ -49,30 +38,34 @@ const SingleProduct = () => {
   console.log(product)
   return (
     <MuiThemeProvider theme={theme}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-evenly'
-        }}
+      <Typography gutterBottom>
+        <img
+          src={product.imageUrl}
+          className="single-view-image"
+          align="left"
+        />
+      </Typography>
+      <Typography variant="h1" component="div" color="primary" gutterBottom>
+        {product.productName}
+      </Typography>
+      <Typography sx={{mb: 1.5}} color="secondary" gutterBottom>
+        {product.insturctor}
+      </Typography>
+
+      <Typography variant="h3" color="secondary" gutterBottom>
+        {product.description}
+      </Typography>
+      <Button
+        variant="contained"
+        color="primary"
+        gutterBottom
+        className="single-view-button"
       >
-        <div id={product.id}>
-          <Typography sx={{fontSize: 14}} gutterBottom>
-            <img src={product.imageUrl} className="single-view-image" />
-          </Typography>
-          <Typography variant="h1" component="div" color="primary">
-            {product.productName}
-          </Typography>
-          <Typography sx={{mb: 1.5}} color="secondary">
-            {product.insturctor}
-          </Typography>
-          <Typography variant="h3" color="secondary">
-            {product.description}
-          </Typography>
-          <Typography variant="h4" color="textPrimary">
-            reviews
-          </Typography>
-        </div>
-      </Box>
+        Add to Cart
+      </Button>
+      <Typography variant="h4" color="textPrimary">
+        reviews
+      </Typography>
     </MuiThemeProvider>
   )
 }
