@@ -1,250 +1,290 @@
 import React from 'react'
-import {makeStyles} from '@material-ui/core/styles'
+import {alpha, makeStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
-// import MenuIcon from '@material-ui/icons/Menu';
-// import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormGroup from '@material-ui/core/FormGroup'
+import Typography from '@material-ui/core/Typography'
+import InputBase from '@material-ui/core/InputBase'
+import Badge from '@material-ui/core/Badge'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
-import {Box, Button, Tooltip} from '@material-ui/core'
 import {Avatar} from '@material-ui/core'
+import history from '../../history'
+import {Box, Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {PropTypes} from 'prop-types'
+import {logout, me} from '../../store'
+import {grey, white} from '@material-ui/core/colors/'
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  grow: {
     flexGrow: 1
   },
   menuButton: {
     marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block'
+    }
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25)
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto'
+    }
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  inputRoot: {
+    color: 'inherit'
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch'
+    }
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex'
+    }
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
+    }
   }
 }))
 
-export default function MenuAppBar() {
+function MenuAppBar({handleClick, isLoggedIn}) {
   const classes = useStyles()
-  const [auth, setAuth] = React.useState(true)
   const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
-  const [anchorElNav, setAnchorElNav] = React.useState(null)
-  const [anchorElUser, setAnchorElUser] = React.useState(null)
-  //   const [anchorEl, setAnchorEl] = React.useState(null)
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
-  const handleOpenNavMenu = event => {
-    setAnchorElNav(event.currentTarget)
-  }
-  const handleOpenUserMenu = event => {
-    setAnchorElUser(event.currentTarget)
-  }
+  const isMenuOpen = Boolean(anchorEl)
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null)
-  }
-  const handleChange = event => {
-    setAuth(event.target.checked)
-  }
-
-  const handleMenu = event => {
+  const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = () => {
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null)
+  }
+
+  const handleMenuClose = () => {
     setAnchorEl(null)
+    handleMobileMenuClose()
   }
-  const popoverOpen = Boolean(anchorEl)
-  const handleTogglePopover = event => {
-    event.preventDefault()
-    if (anchorEl === null) {
-      setAnchorEl(event.currentTarget)
-    } else {
-      setAnchorEl(null)
-    }
+
+  const handleMobileMenuOpen = event => {
+    setMobileMoreAnchorEl(event.currentTarget)
   }
+
+  const menuId = 'primary-search-account-menu'
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+      id={menuId}
+      keepMounted
+      transformOrigin={{vertical: 'top', horizontal: 'right'}}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleClick} to="#">
+        Logout
+      </MenuItem>
+    </Menu>
+  )
+
+  const mobileMenuId = 'primary-search-account-menu-mobile'
+  const renderMobileMenu = (
+    <Menu
+      sx={{mt: '45px'}}
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{vertical: 'top', horizontal: 'right'}}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton aria-label="show orders" color="inherit">
+          <Badge badgeContent={4} color="secondary">
+            {/* <MailIcon /> */}
+            <Typography>Orders</Typography>
+          </Badge>
+        </IconButton>
+        <p>Messages</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show cart" color="inherit">
+          <Badge badgeContent={11} color="secondary">
+            {/* <NotificationsIcon /> */}
+            <Typography>Notifications</Typography>
+          </Badge>
+        </IconButton>
+        <p>Notifications</p>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          {/* <AccountCircle /> */}
+          <Avatar alt="default" src="/img/default.png" />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
+    </Menu>
+  )
+
   return (
-    <div className={classes.root}>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup> */}
+    <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
+            onClick={() => {
+              history.push('/')
+            }}
             edge="start"
-            className={classes.menuButton}
+            className={classes.homeButton}
             color="inherit"
             aria-label="menu"
           >
-            {/* <MenuIcon /> */}
-            <Typography>Menu</Typography>
+            <Typography className={classes.title} variant="h6" noWrap>
+              INSTRUCTOS
+            </Typography>
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{mr: 2, display: {xs: 'none', md: 'flex'}}}
-            className={classes.title}
+
+          <IconButton
+            onClick={() => {
+              history.push('/experiences')
+            }}
+            aria-label="experiences"
+            color="inherit"
           >
-            INSTRUCTOS
-          </Typography>
-
-          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
-            <IconButton
-              size="medium"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              {/* <MenuIcon /> */}
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left'
+            <Typography>Experiences</Typography>
+          </IconButton>
+          <IconButton
+            onClick={() => {
+              history.push('/instructors')
+            }}
+            aria-label="instructors"
+            color="inherit"
+          >
+            <Typography>Instructors</Typography>
+          </IconButton>
+          <div className={classes.search}>
+            {/* <div className={classes.searchIcon}> */}
+            {/* <SearchIcon /> */}
+            {/* <Typography>Search</Typography> */}
+            {/* </div> */}
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left'
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: {xs: 'block', md: 'none'}
-              }}
-            >
-              <Link to="/home">
-                <MenuItem key="home" onClick={handleCloseNavMenu}>
-                  <Typography align="center" color="primary">
-                    Home
-                  </Typography>
-                </MenuItem>
-              </Link>
-              <Link to="/experiences">
-                <MenuItem key="experiences" onClick={handleCloseNavMenu}>
-                  <Typography align="center">Experiences</Typography>
-                </MenuItem>
-              </Link>
-              <Link to="/instructors">
-                <MenuItem key="instructors" onClick={handleCloseNavMenu}>
-                  <Typography align="center">Instructors</Typography>
-                </MenuItem>
-              </Link>
-            </Menu>
-          </Box>
-
-          <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-            <Link to="/home">
-              <Button
-                key="home"
-                onClick={handleCloseNavMenu}
-                sx={{my: 2, color: 'white', display: 'block'}}
-              >
-                home
-              </Button>
-            </Link>
-            <Link to="/experiences">
-              <Button
-                key="experiences"
-                onClick={handleCloseNavMenu}
-                sx={{my: 2, color: 'white', display: 'block'}}
-              >
-                experiences
-              </Button>
-            </Link>
-            <Link to="/instructors">
-              <Button
-                key="instructors"
-                onClick={handleCloseNavMenu}
-                sx={{my: 2, color: 'white', display: 'block'}}
-              >
-                instructors
-              </Button>
-            </Link>
-          </Box>
-
-          {auth ? (
-            <Box sx={{flexGrow: 0}}>
-              <Tooltip title="Open settings">
+              inputProps={{'aria-label': 'search'}}
+            />
+          </div>
+          <div className={classes.grow} />
+          {isLoggedIn ? (
+            <div>
+              <div className={classes.sectionDesktop}>
+                <IconButton aria-label="show orders" color="inherit">
+                  <Badge badgeContent={4} color="secondary">
+                    {/* <MailIcon /> */}
+                    <Typography>Orders</Typography>
+                  </Badge>
+                </IconButton>
+                <IconButton aria-label="show cart" color="inherit">
+                  <Badge badgeContent={17} color="secondary">
+                    {/* <NotificationsIcon /> */}
+                    <Typography>My Cart</Typography>
+                  </Badge>
+                </IconButton>
                 <IconButton
-                  size="medium"
+                  edge="end"
                   aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-owns={popoverOpen ? 'my-popover-id-name' : undefined}
-                  aria-haspopup={true}
-                  onClick={handleTogglePopover}
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
                   color="inherit"
-                  sx={{p: 0}}
                 >
+                  {/* <AccountCircle /> */}
                   <Avatar alt="default" src="/img/default.png" />
                 </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{mt: '45px'}}
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                // anchorOrigin={{
-                //   vertical: 'bottom',
-                //   horizontal: 'left'
-                // }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left'
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem key="account" onClick={handleCloseNavMenu} href="#">
-                  <Typography align="center">Account</Typography>
-                </MenuItem>
-                <MenuItem key="setting" onClick={handleCloseNavMenu} href="#">
-                  <Typography align="center">Setting</Typography>
-                </MenuItem>
-                <MenuItem key="logout" onClick={handleChange} href="#">
-                  <Typography align="center">Logout</Typography>
-                </MenuItem>
-              </Menu>
-            </Box>
+              </div>
+              <div className={classes.sectionMobile}>
+                <IconButton
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  {/* <MoreIcon /> */}
+                  <Typography>More</Typography>
+                </IconButton>
+                {renderMobileMenu}
+                {renderMenu}
+              </div>
+            </div>
           ) : (
             <Box>
               {/* The navbar will show these links before you log in */}
               <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                <Link to="/login">
-                  <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                    <Button
-                      key="home"
-                      sx={{my: 2, color: 'white', display: 'block'}}
-                    >
-                      LOGIN
-                    </Button>
-                  </Box>
-                </Link>
-                <Link to="/signup">
-                  <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                    <Button
-                      key="home"
-                      sx={{my: 2, color: 'white', display: 'block'}}
-                    >
-                      SIGN UP
-                    </Button>
-                  </Box>
-                </Link>
+                <IconButton
+                  onClick={() => {
+                    history.push('/signin')
+                  }}
+                  aria-label="login"
+                  color="inherit"
+                >
+                  <Typography>Login</Typography>
+                </IconButton>
+                <IconButton
+                  onClick={() => {
+                    history.push('/signup')
+                  }}
+                  aria-label="signup"
+                  color="inherit"
+                >
+                  <Typography>Signup</Typography>
+                </IconButton>
               </Box>
             </Box>
           )}
@@ -252,4 +292,31 @@ export default function MenuAppBar() {
       </AppBar>
     </div>
   )
+}
+
+/**
+ * CONTAINER
+ */
+const mapState = state => {
+  return {
+    isLoggedIn: !!state.user.id
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    handleClick() {
+      dispatch(logout())
+    }
+  }
+}
+// export default MenuAppBar;
+export default connect(mapState, mapDispatch)(MenuAppBar)
+
+/**
+ * PROP TYPES
+ */
+MenuAppBar.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired
 }

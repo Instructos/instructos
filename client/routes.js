@@ -8,7 +8,8 @@ import {
   UserHome,
   Home,
   AllProducts,
-  singleProduct
+  singleProduct,
+  AllThings
 } from './components'
 import {me} from './store'
 
