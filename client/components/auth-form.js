@@ -2,34 +2,82 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-
+import {Box, Grid, TextField, Button, Container} from '@material-ui/core'
 /**
  * COMPONENT
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
+  console.log(props)
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}
+        >
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{mt: 1}}
+            name={name}
+          >
+            {/* <form onSubmit={handleSubmit} name={name}> */}
+            <Grid container spacing={2} align="center">
+              <Grid item xs={12}>
+                <label htmlFor="email" />
+                <TextField
+                  label="Email"
+                  variant="standard"
+                  name="email"
+                  type="text"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <label htmlFor="password" />
+                <TextField
+                  label="Password"
+                  variant="standard"
+                  name="password"
+                  type="password"
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              sx={{mt: 3, mb: 2}}
+            >
+              {displayName}
+            </Button>
+            {error && error.response && <div> {error.response.data} </div>}
+            {/* </form> */}
+          </Box>
+        </Box>
+        <Box sx={{mt: 1}}>
+          <Button
+            type="button"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{mt: 3, mb: 2}}
+            href="/auth/google"
+          >
+            {displayName} with Google
+          </Button>
+        </Box>
+      </Container>
     </div>
   )
 }
