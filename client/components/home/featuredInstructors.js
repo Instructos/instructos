@@ -25,31 +25,30 @@ const featuredInstructors = props => {
         <Box className="box">
           {selected.map(product => {
             return (
-              <Card
-                sx={{maxWidth: 275}}
-                key={product.id}
-                align="center"
-                className="card"
-              >
-                <CardContent>
-                  <Typography
-                    sx={{fontSize: 14}}
-                    color="secondary"
-                    gutterBottom
-                  >
-                    <img src={product.imageUrl} className="all-view-image" />
-                  </Typography>
-                  <Typography component="div">{product.productName}</Typography>
-                  <Typography
-                    sx={{mb: 1.5}}
-                    variant="subtitle2"
-                    color="textSecondary"
-                  >
-                    with {product.instructor}
-                  </Typography>
-                </CardContent>
-                <CardActions />
-              </Card>
+              <Link to={`/products/${product.id}`} key={product.id}>
+                <Card align="center" className="card">
+                  <CardContent>
+                    <Typography
+                      sx={{fontSize: 14}}
+                      color="secondary"
+                      gutterBottom
+                    >
+                      <img src={product.imageUrl} className="all-view-image" />
+                    </Typography>
+                    <Typography component="div">
+                      {product.productName}
+                    </Typography>
+                    <Typography
+                      sx={{mb: 1.5}}
+                      variant="subtitle2"
+                      color="textSecondary"
+                    >
+                      with {product.instructor}
+                    </Typography>
+                  </CardContent>
+                  <CardActions />
+                </Card>
+              </Link>
             )
           })}
         </Box>

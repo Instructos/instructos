@@ -27,32 +27,36 @@ const Home = props => {
         <Box className="box">
           {selected.map(product => {
             return (
-              <Card
-                sx={{maxWidth: 275}}
-                key={product.id}
-                className="card"
-                align="center"
-              >
-                <CardContent>
-                  <Typography>
-                    <img src={product.imageUrl} className="all-view-image" />
-                  </Typography>
-                  <Typography component="div">{product.productName}</Typography>
+              <Link to={`/products/${product.id}`} key={product.id}>
+                <Card
+                  sx={{maxWidth: 275}}
+                  key={product.id}
+                  className="card"
+                  align="center"
+                >
+                  <CardContent>
+                    <Typography>
+                      <img src={product.imageUrl} className="all-view-image" />
+                    </Typography>
+                    <Typography component="div">
+                      {product.productName}
+                    </Typography>
 
-                  <Typography
-                    sx={{mb: 1.5}}
-                    variant="subtitle2"
-                    color="textSecondary"
-                  >
-                    with {product.instructor}
-                  </Typography>
+                    <Typography
+                      sx={{mb: 1.5}}
+                      variant="subtitle2"
+                      color="textSecondary"
+                    >
+                      with {product.instructor}
+                    </Typography>
 
-                  <Typography sx={{mb: 1.5}} color="textPrimary">
-                    ${product.price}
-                  </Typography>
-                </CardContent>
-                <CardActions />
-              </Card>
+                    <Typography sx={{mb: 1.5}} color="textPrimary">
+                      ${product.price}
+                    </Typography>
+                  </CardContent>
+                  <CardActions />
+                </Card>
+              </Link>
             )
           })}
         </Box>
