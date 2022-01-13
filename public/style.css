@@ -22,9 +22,12 @@ form div {
 
 .card {
   margin: 2px;
-  border: #fba63b transparent 0.5px;
+  border: #fba63b solid 0.3px;
   box-shadow: none;
   justify-content: center;
+  width: 225px;
+  height: auto;
+  background-color: blue;
 }
 
 img {
@@ -34,7 +37,22 @@ img {
 }
 
 .all-view-image {
-  width: 200px; /* width of container */
-  height: 200px; /* height of container */
+  width: 150px; /* width of container */
+  height: 150px; /* height of container */
   object-fit: cover;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+.box {
+  display: flex;
+  flex: 1;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+  min-height: min-content;
 }
