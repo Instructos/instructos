@@ -39,6 +39,19 @@ img {
   object-fit: cover;
 }
 
+.single-view-image {
+  width: 90vw;
+  height: 45vw;
+  background: linear-gradient(to bottom, transparent, white);
+}
+
+.Overlay {
+  display: block;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  width: 90vw;
+  height: 45vw;
+  background-color: white;
 .allProductImg {
   height: 0px;
   padding-top: 56.25%;
