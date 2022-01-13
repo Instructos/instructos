@@ -141,7 +141,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
         <IconButton aria-label="show orders" color="inherit">
           <Badge badgeContent={4} color="secondary">
             {/* <MailIcon /> */}
-            <Typography>Orders</Typography>
+            <Typography>Order History</Typography>
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -224,10 +224,14 @@ function MenuAppBar({handleClick, isLoggedIn}) {
           {isLoggedIn ? (
             <div>
               <div className={classes.sectionDesktop}>
-                <IconButton aria-label="show orders" color="inherit">
+                <IconButton
+                  onClick={() => history.push('/orders')}
+                  aria-label="show orders"
+                  color="inherit"
+                >
                   <Badge badgeContent={4} color="secondary">
                     {/* <MailIcon /> */}
-                    <Typography>Orders</Typography>
+                    <Typography>Order History</Typography>
                   </Badge>
                 </IconButton>
                 <IconButton aria-label="show cart" color="inherit">
