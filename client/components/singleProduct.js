@@ -17,7 +17,7 @@ import {
   MuiThemeProvider,
   makeStyles
 } from '@material-ui/core/styles'
-// import {textAlign} from '@material-ui/system'
+import {textAlign} from '@material-ui/system'
 
 const theme = createTheme({
   typography: {
