@@ -81,3 +81,10 @@ img {
   height: 0px;
   padding-top: 56.25%;
 }
+
+.all-view-cart {
+  max-width: 50px;
+  min-height: 50px;
+  display: flex;
+  justify-items: right;
+}
