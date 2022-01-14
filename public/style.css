@@ -1,8 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
   background: linear-gradient(360deg, white, #2eb3b4);
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 a {
@@ -63,7 +61,7 @@ img {
   padding: 25px;
   width: 50vw;
   height: 40vw;
-  /* background: linear-gradient(to bottom, transparent, white); */
+  background: linear-gradient(to bottom, transparent, white);
 }
 
 .single-view-span {
