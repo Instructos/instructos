@@ -110,6 +110,7 @@ const SingleProduct = () => {
           color="primary"
           gutterBottom
           className="single-view-button"
+          style={{marginLeft: '30px'}}
         >
           Add to Cart
         </Button>
