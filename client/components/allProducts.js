@@ -1,7 +1,9 @@
-import React, {useEffect, Link} from 'react'
+import React, {useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {fetchAllProducts} from '../store/allProduct'
 import {
+  Button,
   Grid,
   Card,
   CardActions,
@@ -15,7 +17,6 @@ import {
   MuiThemeProvider,
   makeStyles
 } from '@material-ui/core/styles'
-//shooimport {AddShoppingCart} from '@material-ui/icons'
 
 const useStyles = makeStyles({
   root: {
@@ -82,27 +83,32 @@ const AllProducts = () => {
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
               <Card className={classes.root}>
-                <CardMedia
-                  className={classes.media}
-                  image={product.imageUrl}
-                  title={product.productName}
-                />
-                <CardContent>
-                  <div className={classes.cardContent}>
-                    <Typography variant="h6" gutterBottom>
-                      {product.productName}
+                <Link to={`/products/${product.id}`} key={product.id}>
+                  <CardMedia
+                    className={classes.media}
+                    image={product.imageUrl}
+                    title={product.productName}
+                  />
+                  <CardContent>
+                    <div className={classes.cardContent}>
+                      <Typography variant="h6" gutterBottom>
+                        {product.productName}
+                      </Typography>
+                      <Typography gutterBottom className={classes.price}>
+                        ${product.price}
+                      </Typography>
+                    </div>
+                    <Typography variant="h6" gutterBottom color="secondary">
+                      With {product.instructor}
                     </Typography>
-                    <Typography gutterBottom>$ {product.price}</Typography>
-                  </div>
-                  <Typography variant="h6" gutterBottom color="secondary">
-                    {' '}
-                    with {product.instructor}
-                  </Typography>
-                </CardContent>
-
+                  </CardContent>
+                </Link>
                 <CardActions disableSpacing className={classes.CardActions}>
-                  <IconButton aria-label="Add to Cart">
-                    {/* <AddShoppingCart /> */}
+                  <IconButton variant="contained" color="primary" gutterBottom>
+                    <img
+                      src="https://media.istockphoto.com/vectors/red-heart-in-shopping-cart-vector-icon-vector-id920398794?k=20&m=920398794&s=170667a&w=0&h=e8F6W3Yjye5FCo_JUPblBgTyNqzcUqWpZiFn26i5aYw="
+                      className="all-view-cart"
+                    />
                   </IconButton>
                 </CardActions>
               </Card>

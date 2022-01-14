@@ -58,14 +58,20 @@ img {
 } */
 
 .single-view-image {
+  padding: 25px;
   width: 50vw;
   height: 40vw;
   background: linear-gradient(to bottom, transparent, white);
 }
 
+.single-view-span {
+  font-size: 24px;
+}
+
 .single-view-button {
   width: 150px;
   height: 60px;
+  padding-left: 35px;
 }
 
 .Overlay {
@@ -80,4 +86,11 @@ img {
 .allProductImg {
   height: 0px;
   padding-top: 56.25%;
+}
+
+.all-view-cart {
+  max-width: 50px;
+  min-height: 50px;
+  display: flex;
+  justify-items: right;
 }

@@ -12,7 +12,12 @@ import {
   Typography,
   Container
 } from '@material-ui/core'
-import {createTheme, MuiThemeProvider} from '@material-ui/core/styles'
+import {
+  createTheme,
+  MuiThemeProvider,
+  makeStyles
+} from '@material-ui/core/styles'
+// import {textAlign} from '@material-ui/system'
 
 const theme = createTheme({
   typography: {
@@ -26,16 +31,44 @@ const theme = createTheme({
   }
 })
 
+const useStyles = makeStyles({
+  productName: {
+    paddingTop: 25,
+    whiteSpace: 'nowrap',
+    fontSize: '2vw'
+  },
+  instructor: {
+    textAlign: 'right',
+    paddingRight: '10vw',
+    paddingBottom: '50px'
+  },
+  description: {
+    fontSize: '24px',
+    paddingBottom: '75px'
+  },
+  price: {
+    fontSize: '30px',
+    textAlign: 'center',
+    paddingRight: '10vw',
+    justifyContent: 'space-between'
+  },
+  reviews: {
+    bottom: 0,
+    width: '100vw',
+    height: '110px',
+    textAlign: 'left'
+  }
+})
+
 const SingleProduct = () => {
   let product = useSelector(state => state.product)
-
+  let classes = useStyles()
   const dispatch = useDispatch()
   const {id} = useParams()
   useEffect(() => {
     dispatch(singleProduct(id))
   }, [])
 
-  console.log(product)
   return (
     <MuiThemeProvider theme={theme}>
       <Typography gutterBottom>
@@ -45,26 +78,42 @@ const SingleProduct = () => {
           align="left"
         />
       </Typography>
-      <Typography variant="h1" component="div" color="primary" gutterBottom>
-        {product.productName}
-      </Typography>
-      <Typography sx={{mb: 1.5}} color="secondary" gutterBottom>
-        {product.insturctor}
-      </Typography>
-
-      <Typography variant="h3" color="secondary" gutterBottom>
+      <div>
+        <Typography
+          component="div"
+          color="primary"
+          gutterBottom
+          className={classes.productName}
+        >
+          {product.productName}
+        </Typography>
+        <Typography
+          variant="h4"
+          color="secondary"
+          gutterBottom
+          className={classes.instructor}
+        >
+          <span className="single-view-span">with</span> {product.instructor}
+        </Typography>
+      </div>
+      <Typography
+        className={classes.description}
+        color="secondary"
+        gutterBottom
+      >
         {product.description}
       </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        gutterBottom
-        className="single-view-button"
-      >
-        Add to Cart
-      </Button>
-      <Typography variant="h4" color="textPrimary">
-        reviews
+      <Typography className={classes.price} color="secondary">
+        ${product.price}{' '}
+        <Button
+          variant="contained"
+          color="primary"
+          gutterBottom
+          className="single-view-button"
+          style={{marginLeft: '30px'}}
+        >
+          Add to Cart
+        </Button>
       </Typography>
     </MuiThemeProvider>
   )
