@@ -14,6 +14,7 @@ import {
 import {createTheme, MuiThemeProvider} from '@material-ui/core/styles'
 
 import useWindowDimensions from './useWindowDimensions'
+import {mergeClasses} from '@material-ui/core/node_modules/@material-ui/styles'
 
 const Home = props => {
   const classes = props.classes
