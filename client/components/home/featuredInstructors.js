@@ -6,6 +6,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  CardMedia,
   Button,
   Typography,
   Container
@@ -13,6 +14,7 @@ import {
 import {createTheme, MuiThemeProvider} from '@material-ui/core/styles'
 
 const featuredInstructors = props => {
+  const classes = props.classes
   const products = props.products
 
   const shuffled = products.sort(() => 0.5 - Math.random())
@@ -21,20 +23,21 @@ const featuredInstructors = props => {
   return (
     <div>
       <h2>Featured Instructors</h2>
-      <div className="content">
-        <Box className="box">
+      <div className={classes.content}>
+        <Box className={classes.box}>
           {selected.map(product => {
             return (
               <Link to={`/products/${product.id}`} key={product.id}>
-                <Card align="center" className="card">
+                <Card align="center" className={classes.card}>
+                  <CardMedia
+                    className={classes.allViewImage}
+                    image={product.imageUrl}
+                    title={product.productName}
+                  />
                   <CardContent>
-                    <Typography
-                      sx={{fontSize: 14}}
-                      color="secondary"
-                      gutterBottom
-                    >
-                      <img src={product.imageUrl} className="all-view-image" />
-                    </Typography>
+                    {/* <Typography>
+                      <img src={product.imageUrl} className={classes.allViewImage} />
+                    </Typography> */}
                     <Typography component="div">
                       {product.productName}
                     </Typography>
