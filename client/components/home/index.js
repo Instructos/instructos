@@ -11,13 +11,121 @@ import {
   Typography,
   Container
 } from '@material-ui/core'
-import {createTheme, MuiThemeProvider} from '@material-ui/core/styles'
+import {
+  createTheme,
+  MuiThemeProvider,
+  makeStyles
+} from '@material-ui/core/styles'
 
 import {fetchAllProducts} from '../../store/allProduct'
 import FeaturedExperiences from './featuredExperiences'
 import FeaturedInstructors from './featuredInstructors'
 import Testimonials from './testimonials'
-import {grey} from '@material-ui/core/colors'
+import Introduction from './introduction'
+import {blue, grey} from '@material-ui/core/colors'
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 200,
+    maxWidth: '100%'
+  },
+  card: {
+    margin: '4px',
+    // border: "#fba63b solid 2px",
+    boxShadow: 'none',
+    justifyContent: 'center',
+    width: '225px',
+    height: '250px',
+    borderRadius: '5px'
+    // backgroundColor: "#daf0f0"
+  },
+  box: {
+    display: 'flex',
+    flex: '1',
+    justifyContent: 'center',
+    minHeight: 'min-content'
+  },
+  allViewImage: {
+    // width: "100%", /* width of container */
+    // height: "150px", /* height of container */
+    // objectFit: "cover"
+    height: 0,
+    paddingTop: '56.25%', // 16:9,
+    marginTop: '30'
+  },
+  content: {
+    flex: '1',
+    display: 'flex',
+    overflow: 'auto',
+    scrollBehavior: 'smooth'
+  },
+  reviewCard: {
+    margin: '10px',
+    // border: "#fba63b solid 2px",
+    boxShadow: 'none',
+    justifyContent: 'center',
+    width: '225px',
+    height: '150px',
+    borderRadius: '10px'
+    // backgroundColor: "#daf0f0"
+  },
+
+  reviewBox: {
+    display: 'flex',
+    flex: '1',
+    justifyContent: 'center',
+    minHeight: 'min-content',
+    margin: '10px'
+  },
+
+  testimonialBox: {
+    marginTop: '30px',
+    padding: '1px',
+    width: '800px',
+    borderRadius: '10px',
+    align: 'center',
+    // backgroundColor: "#fba63b",
+    backgroundColor: '#4b5bbf',
+    border: 'black',
+    margin: '0 auto'
+  },
+
+  testimonialTitle: {
+    fontFamily: "'Raleway', sans-serif",
+    letterSpacing: '2px',
+    color: 'white',
+    marginTop: '20px',
+    marginBottom: '5px'
+  },
+
+  testimonialContainer: {
+    justifyContent: 'space-evenly'
+  },
+
+  introContainer: {
+    alignItems: 'center'
+  },
+
+  introBox: {
+    margin: '0 auto',
+    padding: '10px',
+    borderRadius: '10px',
+    width: '500px',
+    alignText: 'center',
+    // backgroundColor: "#2eb3b4",
+    color: 'white'
+  },
+  introTitle: {
+    fontFamily: "'Raleway', sans-serif",
+    margin: '1px',
+    fontSize: '70px',
+    letterSpacing: '5px'
+  },
+  introText: {
+    marginBottom: '5px',
+    marginTop: '1px'
+  }
+})
 
 const theme = createTheme({
   typography: {
@@ -32,6 +140,8 @@ const theme = createTheme({
 })
 
 const Home = () => {
+  const classes = useStyles()
+
   let products = useSelector(state => state.products)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -40,9 +150,10 @@ const Home = () => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <FeaturedExperiences products={products} />
-      <FeaturedInstructors products={products} />
-      <Testimonials />
+      <Introduction classes={classes} />
+      <FeaturedExperiences products={products} classes={classes} />
+      <FeaturedInstructors products={products} classes={classes} />
+      <Testimonials classes={classes} />
     </MuiThemeProvider>
   )
 }

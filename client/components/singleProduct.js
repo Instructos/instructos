@@ -16,7 +16,12 @@ import {
   Typography,
   Container
 } from '@material-ui/core'
-import {createTheme, MuiThemeProvider} from '@material-ui/core/styles'
+import {
+  createTheme,
+  MuiThemeProvider,
+  makeStyles
+} from '@material-ui/core/styles'
+import {textAlign} from '@material-ui/system'
 
 const theme = createTheme({
   typography: {
@@ -30,9 +35,38 @@ const theme = createTheme({
   }
 })
 
+const useStyles = makeStyles({
+  productName: {
+    paddingTop: 25,
+    whiteSpace: 'nowrap',
+    fontSize: '2vw'
+  },
+  instructor: {
+    textAlign: 'right',
+    paddingRight: '10vw',
+    paddingBottom: '50px'
+  },
+  description: {
+    fontSize: '24px',
+    paddingBottom: '75px'
+  },
+  price: {
+    fontSize: '30px',
+    textAlign: 'center',
+    paddingRight: '10vw',
+    justifyContent: 'space-between'
+  },
+  reviews: {
+    bottom: 0,
+    width: '100vw',
+    height: '110px',
+    textAlign: 'left'
+  }
+})
+
 const SingleProduct = () => {
   let product = useSelector(state => state.product)
-
+  let classes = useStyles()
   const dispatch = useDispatch()
   const {id} = useParams()
 
@@ -40,7 +74,6 @@ const SingleProduct = () => {
     dispatch(singleProduct(id))
   }, [])
 
-  //NEW CODE
   //have access to currentUser, product, and quantity
   let currentUser = useSelector(state => state.user)
 
@@ -79,29 +112,42 @@ const SingleProduct = () => {
           align="left"
         />
       </Typography>
-
       <div>
-        <Typography variant="h5" component="div" color="primary">
+        <Typography
+          component="div"
+          color="primary"
+          gutterBottom
+          className={classes.productName}
+        >
           {product.productName}
         </Typography>
-        <Typography sx={{mb: 1.5}} color="secondary">
-          {product.insturctor}
-        </Typography>
-
-        <Typography variant="h6" color="secondary">
-          {product.description}
+        <Typography
+          variant="h4"
+          color="secondary"
+          gutterBottom
+          className={classes.instructor}
+        >
+          <span className="single-view-span">with</span> {product.instructor}
         </Typography>
       </div>
-      <Button
-        onClick={handleClick}
-        variant="contained"
-        color="primary"
-        className="single-view-button"
+      <Typography
+        className={classes.description}
+        color="secondary"
+        gutterBottom
       >
-        Add to Cart
-      </Button>
-      <Typography variant="h4" color="textPrimary">
-        reviews
+        {product.description}
+      </Typography>
+      <Typography className={classes.price} color="secondary">
+        ${product.price}{' '}
+        <Button
+          variant="contained"
+          color="primary"
+          gutterBottom
+          className="single-view-button"
+          style={{marginLeft: '30px'}}
+        >
+          Add to Cart
+        </Button>
       </Typography>
     </MuiThemeProvider>
   )

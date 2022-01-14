@@ -6,6 +6,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  CardMedia,
   Button,
   Typography,
   Container
@@ -13,8 +14,10 @@ import {
 import {createTheme, MuiThemeProvider} from '@material-ui/core/styles'
 
 import useWindowDimensions from './useWindowDimensions'
+import {mergeClasses} from '@material-ui/core/node_modules/@material-ui/styles'
 
 const Home = props => {
+  const classes = props.classes
   const products = props.products
 
   const shuffled = products.sort(() => 0.5 - Math.random())
@@ -23,21 +26,26 @@ const Home = props => {
   return (
     <div>
       <h2>Featured Experiences</h2>
-      <div className="content">
-        <Box className="box">
+      <div className={classes.content}>
+        <Box className={classes.box}>
           {selected.map(product => {
             return (
               <Link to={`/products/${product.id}`} key={product.id}>
                 <Card
                   sx={{maxWidth: 275}}
                   key={product.id}
-                  className="card"
+                  className={classes.card}
                   align="center"
                 >
+                  <CardMedia
+                    className={classes.allViewImage}
+                    image={product.imageUrl}
+                    title={product.productName}
+                  />
                   <CardContent>
-                    <Typography>
-                      <img src={product.imageUrl} className="all-view-image" />
-                    </Typography>
+                    {/* <Typography>
+                      <img src={product.imageUrl} className={classes.allViewImage} />
+                    </Typography> */}
                     <Typography component="div">
                       {product.productName}
                     </Typography>
