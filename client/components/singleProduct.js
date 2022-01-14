@@ -1,8 +1,10 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useParams} from 'react-router-dom/cjs/react-router-dom.min'
 import {singleProduct} from '../store/singleProduct'
-import {me} from '../store/user'
+import {addOrderItem} from '../store/orderItems'
+import {addOrder} from '../store/orders'
+import user, {me} from '../store/user'
 
 import {
   Box,
@@ -30,7 +32,6 @@ const theme = createTheme({
 
 const SingleProduct = () => {
   let product = useSelector(state => state.product)
-  let currentUser = useSelector(state => state.user)
 
   const dispatch = useDispatch()
   const {id} = useParams()
@@ -39,13 +40,35 @@ const SingleProduct = () => {
     dispatch(singleProduct(id))
   }, [])
 
+  //NEW CODE
+  //have access to currentUser, product, and quantity
+  let currentUser = useSelector(state => state.user)
+
+  //can replace lifecycle
   useEffect(() => {
     dispatch(me())
   }, [])
 
-  // const handleClick = (e) =>  {
-  //   if
-  // }
+  //set quantity in local state
+  const [quantity, setQuantity] = useState(1)
+
+  function handleClick(event) {
+    event.preventDefault()
+    console.log('Clicked!')
+    //setQuantity(quantity+1)
+
+    //add the order
+    //NOTE SEED DATA IS NOT INTEGER TYPE
+    dispatch(addOrder({userId: currentUser.id}))
+    dispatch(
+      addOrderItem({
+        productId: product.id,
+        userId: currentUser.id,
+        quantity: quantity,
+        price: 50000
+      })
+    )
+  }
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -56,21 +79,23 @@ const SingleProduct = () => {
           align="left"
         />
       </Typography>
-      <Typography variant="h1" component="div" color="primary">
-        {product.productName}
-      </Typography>
-      <Typography sx={{mb: 1.5}} color="secondary">
-        {product.insturctor}
-      </Typography>
 
-      <Typography variant="h3" color="secondary">
-        {product.description}
-      </Typography>
+      <div>
+        <Typography variant="h5" component="div" color="primary">
+          {product.productName}
+        </Typography>
+        <Typography sx={{mb: 1.5}} color="secondary">
+          {product.insturctor}
+        </Typography>
+
+        <Typography variant="h6" color="secondary">
+          {product.description}
+        </Typography>
+      </div>
       <Button
         onClick={handleClick}
         variant="contained"
         color="primary"
-        gutterBottom
         className="single-view-button"
       >
         Add to Cart

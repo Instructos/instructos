@@ -1,14 +1,14 @@
 const router = require('express').Router()
 const {User, Order, OrderItem} = require('../db/models')
 
-//   /api/orders
+//   /api/orderItems
 router.get('/', async (req, res, next) => {
   try {
-    const orders = await Order.findAll({
-      include: [OrderItem, User]
+    const orderItems = await OrderItem.findAll({
+      include: [Order]
     })
 
-    res.json(orders)
+    res.json(orderItems)
   } catch (error) {
     next(error)
   }
@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    res.status(201).send(await Order.create(req.body))
+    res.status(201).send(await OrderItem.create(req.body))
   } catch (error) {
     next(error)
   }

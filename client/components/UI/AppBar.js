@@ -234,7 +234,11 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                     <Typography>Order History</Typography>
                   </Badge>
                 </IconButton>
-                <IconButton aria-label="show cart" color="inherit">
+                <IconButton
+                  aria-label="show cart"
+                  color="inherit"
+                  onClick={() => history.push('/cart')}
+                >
                   <Badge badgeContent={17} color="secondary">
                     {/* <NotificationsIcon /> */}
                     <Typography>My Cart</Typography>
