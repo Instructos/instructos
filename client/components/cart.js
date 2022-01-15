@@ -10,6 +10,9 @@ import {
   makeStyles
 } from '@material-ui/core'
 import React from 'react'
+import {useDispatch, useEffect, useSelector} from 'react-redux'
+import {useParams} from 'react-router-dom/cjs/react-router-dom.min'
+import {getUserCart} from '../store/userCart'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,6 +37,15 @@ const useStyles = makeStyles(theme => ({
 
 const Cart = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+  const currentCart = useSelector(state => state.userCart)
+
+  const {id} = useParams()
+
+  useEffect(() => {
+    dispatch(getUserCart(id))
+  }, [])
+
   return (
     <Container align="center" justify-content="space-between">
       <Typography variant="h2" color="primary">

@@ -94,10 +94,10 @@ function MenuAppBar({handleClick, isLoggedIn}) {
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
-  //NEW
+  // //NEW
   const dispatch = useDispatch()
 
-  //setting const to state value
+  // //setting const to state value
   let currentUser = useSelector(state => state.user)
 
   //useEffect to pull state based on parameters if necessary
@@ -106,11 +106,10 @@ function MenuAppBar({handleClick, isLoggedIn}) {
   }, [])
   const id = currentUser.id
 
-  let currentUserCart = useSelector(state => state.userCart)
-
-  useEffect(() => {
-    dispatch(getUserCart(id))
-  }, [])
+  // let currentUserCart = useSelector(state => state.userCart)
+  // useEffect(() => {
+  //   dispatch(getUserCart(id))
+  // }, [])
 
   // const getUserCartHandler = (id) => {
   //   return dispatch(getUserCart(id))
@@ -267,7 +266,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                 <IconButton
                   aria-label="show cart"
                   color="inherit"
-                  onClick={() => history.push('/cart')}
+                  onClick={() => history.push(`/cart/${currentUser.id}`)}
                 >
                   <Badge badgeContent={17} color="secondary">
                     {/* <NotificationsIcon /> */}
