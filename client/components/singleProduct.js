@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useParams} from 'react-router-dom/cjs/react-router-dom.min'
 import {singleProduct} from '../store/singleProduct'
-import {addOrderItem} from '../store/orderItems'
 import {addOrder} from '../store/orders'
 import user, {me} from '../store/user'
 
@@ -66,7 +65,6 @@ const useStyles = makeStyles({
 
 const SingleProduct = () => {
   let product = useSelector(state => state.product)
-  let classes = useStyles()
   const dispatch = useDispatch()
   const {id} = useParams()
 
@@ -74,27 +72,24 @@ const SingleProduct = () => {
     dispatch(singleProduct(id))
   }, [])
 
+  //NEW CODE:
   //have access to currentUser, product, and quantity
   let currentUser = useSelector(state => state.user)
-
-  //can replace lifecycle
   useEffect(() => {
     dispatch(me())
   }, [])
 
-  //set quantity in local state
   const [quantity, setQuantity] = useState(1)
 
   function handleClick(event) {
     event.preventDefault()
-    console.log('Clicked!')
+    //console.log('Clicked!')
     //setQuantity(quantity+1)
 
     //add the order
     //NOTE SEED DATA IS NOT INTEGER TYPE
-    dispatch(addOrder({userId: currentUser.id}))
     dispatch(
-      addOrderItem({
+      addOrder({
         productId: product.id,
         userId: currentUser.id,
         quantity: quantity,
@@ -102,6 +97,8 @@ const SingleProduct = () => {
       })
     )
   }
+
+  let classes = useStyles()
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -145,6 +142,7 @@ const SingleProduct = () => {
           gutterBottom
           className="single-view-button"
           style={{marginLeft: '30px'}}
+          onClick={handleClick}
         >
           Add to Cart
         </Button>
