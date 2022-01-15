@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
+import {useParams} from 'react-router-dom/cjs/react-router-dom.min'
 
 import {alpha, makeStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -19,7 +20,7 @@ import {PropTypes} from 'prop-types'
 import {logout, me} from '../../store'
 import {grey, white} from '@material-ui/core/colors/'
 
-import {getUserOrderItems} from '../../store/userOrderItems'
+import {getUserCart} from '../../store/userCart'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -95,17 +96,28 @@ function MenuAppBar({handleClick, isLoggedIn}) {
 
   //NEW
   const dispatch = useDispatch()
+
+  //setting const to state value
   let currentUser = useSelector(state => state.user)
+
+  //useEffect to pull state based on parameters if necessary
   useEffect(() => {
     dispatch(me())
   }, [])
+  const id = currentUser.id
 
-  let currentUserOrderItems = useSelector(state => state.userOrderItems)
+  let currentUserCart = useSelector(state => state.userCart)
+
   useEffect(() => {
-    dispatch(getUserOrderItems())
+    dispatch(getUserCart(id))
   }, [])
 
-  let cartCount = currentUserOrderItems.filter(item => item.quantity)
+  // const getUserCartHandler = (id) => {
+  //   return dispatch(getUserCart(id))
+  // }
+
+  // console.log(getUserCartHandler(id))
+  // console.log(currentUserCart)
 
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget)

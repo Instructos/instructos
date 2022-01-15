@@ -3,6 +3,7 @@ import axios from 'axios'
 const GET_ORDERS = 'GET_ORDERS'
 const ADD_ORDER = 'ADD_ORDER'
 
+//GET ALL ORDERS REGARDLESS OF PARAMETERS
 export const _getOrders = orders => {
   return {
     type: GET_ORDERS,
@@ -28,6 +29,7 @@ export const getOrders = () => {
   }
 }
 
+//BIG ROUTE
 export const addOrder = order => {
   return async dispatch => {
     try {
