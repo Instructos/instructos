@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+
 import {alpha, makeStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -16,6 +18,8 @@ import {connect} from 'react-redux'
 import {PropTypes} from 'prop-types'
 import {logout, me} from '../../store'
 import {grey, white} from '@material-ui/core/colors/'
+
+import {getUserOrderItems} from '../../store/userOrderItems'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -88,6 +92,20 @@ function MenuAppBar({handleClick, isLoggedIn}) {
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
+
+  //NEW
+  const dispatch = useDispatch()
+  let currentUser = useSelector(state => state.user)
+  useEffect(() => {
+    dispatch(me())
+  }, [])
+
+  let currentUserOrderItems = useSelector(state => state.userOrderItems)
+  useEffect(() => {
+    dispatch(getUserOrderItems())
+  }, [])
+
+  let cartCount = currentUserOrderItems.filter(item => item.quantity)
 
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget)

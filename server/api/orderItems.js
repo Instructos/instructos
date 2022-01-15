@@ -8,6 +8,25 @@ router.get('/', async (req, res, next) => {
       include: [Order]
     })
 
+    res.send(orderItems)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const orderItems = await OrderItem.findAll({
+      include: [
+        {
+          model: Order,
+          where: {
+            userId: req.params.userId
+          }
+        }
+      ]
+    })
+
     res.json(orderItems)
   } catch (error) {
     next(error)

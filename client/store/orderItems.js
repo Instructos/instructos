@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const GET_ORDER_ITEMS = 'GET_ORDER_ITEMS'
+const GET_ALL_ORDER_ITEMS = 'GET_ALL_ORDER_ITEMS'
 const ADD_ORDER_ITEM = 'ADD_ORDER_ITEM'
 
-export const _getOrderItems = orders => {
+export const _getAllOrderItems = orders => {
   return {
-    type: GET_ORDER_ITEMS,
+    type: GET_ALL_ORDER_ITEMS,
     orders
   }
 }
@@ -17,11 +17,11 @@ export const _addOrderItem = orderItem => {
   }
 }
 
-export const getOrderItems = () => {
+export const getAllOrderItems = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/orderItems')
-      dispatch(_getOrderItems(data))
+      dispatch(_getAllOrderItems(data))
     } catch (error) {
       console.log(error)
     }
@@ -41,7 +41,7 @@ export const addOrderItem = orderItem => {
 
 export default function allOrderItemsReducer(state = [], action) {
   switch (action.type) {
-    case GET_ORDER_ITEMS:
+    case GET_ALL_ORDER_ITEMS:
       return action.orders
     case ADD_ORDER_ITEM:
       return [...state, action.orderItem]
