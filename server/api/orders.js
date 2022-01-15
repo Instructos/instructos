@@ -1,27 +1,28 @@
 const router = require('express').Router()
 const {User, Order, OrderItem} = require('../db/models')
 
-//   /api/orders
-router.get('/', async (req, res, next) => {
-  try {
-    const orders = await Order.findAll({
-      include: [OrderItem, User]
-    })
+//   /api/orders GET ALL ORDERS & ASSOCIATED USER/ORDER ITEMS
 
-    res.json(orders)
+router.get('/:id', async (req, res, next) => {
+  try {
+    const orderItems = await Order.findAll({
+      where: {
+        userId: req.params.id,
+        isPurchased: false
+      },
+      include: [
+        {
+          model: OrderItem
+        }
+      ]
+    })
+    res.json(orderItems)
   } catch (error) {
     next(error)
   }
 })
 
-// router.post('/', async (req, res, next) => {
-//   try {
-//     res.status(201).send(await Order.create(req.body))
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
+//BIG ROUTE
 router.post('/', async (req, res, next) => {
   try {
     const order = await Order.findOrCreate({
@@ -111,16 +112,5 @@ router.put('/', async (req, res, next) => {
     next(error)
   }
 })
-
-// router.put('/', async (req, res, next) => {
-//   try {
-//     const order = await Order.findByPk(req.params.id, {
-//       include: [Order, OrderItem]
-//     });
-//     res.send(await order.update(req.body));
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 module.exports = router
