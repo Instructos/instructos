@@ -14,7 +14,7 @@ export const getUserCart = id => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/orders/${id}`)
-      dispatch(_getUserCart(data))
+      dispatch(_getUserCart(data[0].orderItems))
     } catch (error) {
       console.log(error)
     }

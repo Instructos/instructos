@@ -93,7 +93,7 @@ const SingleProduct = () => {
         productId: product.id,
         userId: currentUser.id,
         quantity: quantity,
-        price: 50000
+        price: 5000
       })
     )
   }

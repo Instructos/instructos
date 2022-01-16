@@ -7,12 +7,14 @@ import {
   Grid,
   Paper,
   ButtonBase,
+  Row,
   makeStyles
 } from '@material-ui/core'
-import React from 'react'
-import {useDispatch, useEffect, useSelector} from 'react-redux'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom/cjs/react-router-dom.min'
 import {getUserCart} from '../store/userCart'
+import {fetchAllProducts} from '../store/allProduct'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,12 +40,20 @@ const useStyles = makeStyles(theme => ({
 const Cart = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const currentCart = useSelector(state => state.userCart)
+  const userCart = useSelector(state => state.userCart)
 
-  const {id} = useParams()
+  let allProducts = useSelector(state => state.products)
+  useEffect(() => {
+    dispatch(fetchAllProducts())
+  }, [])
+
+  const {userId} = useParams()
+
+  console.log(userCart)
+  console.log(allProducts)
 
   useEffect(() => {
-    dispatch(getUserCart(id))
+    dispatch(getUserCart(userId))
   }, [])
 
   return (
@@ -54,7 +64,64 @@ const Cart = () => {
 
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
-          <Grid item>
+          {userCart.map(item => {
+            return (
+              <div key={item.id}>
+                <Grid item>
+                  <ButtonBase className={classes.image}>
+                    <img
+                      className={classes.img}
+                      alt="complex"
+                      src={
+                        allProducts.filter(product => {
+                          return product.id === item.productId
+                        })[0].imageUrl
+                      }
+                    />
+                  </ButtonBase>
+                </Grid>
+                <Grid item sm container>
+                  <Grid
+                    item
+                    sm
+                    container
+                    align="left"
+                    direction="column"
+                    spacing={2}
+                  >
+                    <Grid item sm>
+                      <Typography gutterBottom variant="h5">
+                        {
+                          allProducts.filter(product => {
+                            return product.id === item.productId
+                          })[0].productName
+                        }
+                      </Typography>
+                      <Typography>Quantity</Typography>
+                      <Typography>{item.quantity}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="h5">
+                      ${`${item.price / 100}`}
+                    </Typography>
+                    <Grid item>
+                      <IconButton variant="outlined">-</IconButton>
+                      <IconButton variant="outlined">+</IconButton>
+                      <Typography
+                        variant="subtitle2"
+                        style={{cursor: 'pointer'}}
+                      >
+                        Remove
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </div>
+            )
+          })}
+
+          {/* <Grid item>
             <ButtonBase className={classes.image}>
               <img
                 className={classes.img}
@@ -83,11 +150,11 @@ const Cart = () => {
                 </Typography>
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Paper>
 
-      <Typography variant="h6">No products</Typography>
+      {/* <Typography variant="h6">No products</Typography> */}
 
       <Container maxWidth="sm">
         <Button

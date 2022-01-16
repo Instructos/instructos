@@ -9,7 +9,6 @@ import {
   Home,
   AllProducts,
   singleProduct,
-  AllThings,
   Cart
 } from './components'
 import {me} from './store'
