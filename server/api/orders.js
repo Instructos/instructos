@@ -55,8 +55,10 @@ router.post('/', async (req, res, next) => {
       })
       if (productExists) {
         const updatedQuantity = Number(productExists.quantity) + 1
+        const updatedPrice = Number(req.body.price) * updatedQuantity
         await productExists.update({
-          quantity: updatedQuantity
+          quantity: updatedQuantity,
+          price: updatedPrice
         })
       } else {
         //open user order exists, but not the product

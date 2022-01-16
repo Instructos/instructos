@@ -106,17 +106,10 @@ function MenuAppBar({handleClick, isLoggedIn}) {
   }, [])
   const id = currentUser.id
 
-  // let currentUserCart = useSelector(state => state.userCart)
-  // useEffect(() => {
-  //   dispatch(getUserCart(id))
-  // }, [])
-
-  // const getUserCartHandler = (id) => {
-  //   return dispatch(getUserCart(id))
-  // }
-
-  // console.log(getUserCartHandler(id))
-  // console.log(currentUserCart)
+  let currentUserCart = useSelector(state => state.userCart)
+  useEffect(() => {
+    dispatch(getUserCart())
+  }, [])
 
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget)
@@ -268,7 +261,10 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                   color="inherit"
                   onClick={() => history.push(`/cart/${currentUser.id}`)}
                 >
-                  <Badge badgeContent={17} color="secondary">
+                  <Badge
+                    badgeContent={currentUserCart.length}
+                    color="secondary"
+                  >
                     {/* <NotificationsIcon /> */}
                     <Typography>My Cart</Typography>
                   </Badge>

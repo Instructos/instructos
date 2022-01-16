@@ -22,7 +22,7 @@ export const getAllOrderItems = () => {
   }
 }
 
-export default function allOrderItemsReducer(state = [], action) {
+export default function allOrderItemsReducer(state = {}, action) {
   switch (action.type) {
     case GET_ALL_ORDER_ITEMS:
       return action.orders
