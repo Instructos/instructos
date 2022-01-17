@@ -259,7 +259,9 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                 <IconButton
                   aria-label="show cart"
                   color="inherit"
-                  onClick={() => history.push(`/cart/${currentUser.id}`)}
+                  onClick={() =>
+                    location.reload(history.push(`/cart/${currentUser.id}`))
+                  }
                 >
                   <Badge
                     badgeContent={currentUserCart.length}
