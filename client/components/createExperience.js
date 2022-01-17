@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
 import {
   Button,
   TextField,
   createTheme,
   MuiThemeProvider
 } from '@material-ui/core'
+import {createProduct} from '../store/createNewProduct'
 
 const theme = createTheme({
   typography: {
@@ -26,6 +28,7 @@ const CreateExperience = () => {
     price: '',
     imageUrl: ''
   })
+  const dispatch = useDispatch()
 
   const handleInputChange = event => {
     setValues({...product, [event.target.name]: event.target.value})
@@ -33,6 +36,7 @@ const CreateExperience = () => {
   const handleSubmit = event => {
     event.preventDefault()
     console.log(product)
+    dispatch(createProduct(product))
   }
   return (
     <MuiThemeProvider theme={theme}>
