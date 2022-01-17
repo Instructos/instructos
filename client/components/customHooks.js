@@ -1,22 +1,16 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 
-const useCreateExperience = callback => {
-  const [inputs, setInputs] = useState({})
-  const handleSubmit = event => {
-    if (event) {
-      event.preventDefault()
-    }
-    callback()
+const useInput = initialValue => {
+  const [value, setValue] = useState(initialValue)
+
+  const handleChange = event => {
+    setValue(event.target.value)
   }
-  const handleInputChange = event => {
-    event.persist()
-    setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}))
-  }
+
   return {
-    handleSubmit,
-    handleInputChange,
-    inputs
+    value,
+    onChange: handleChange
   }
 }
 
-export default useCreateExperience
+export default useInput

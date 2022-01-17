@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
   Button,
   TextField,
   createTheme,
   MuiThemeProvider
 } from '@material-ui/core'
-import useCreateExperience from './customHooks'
+import {useSelector} from 'react-redux'
+import useInput from './customHooks'
 
 const theme = createTheme({
   typography: {
@@ -20,53 +21,67 @@ const theme = createTheme({
 })
 
 const CreateExperience = () => {
-  const {inputs, handleInputChange, handleSubmit} = useCreateExperience()
+  const [product, setValues] = useState({
+    productName: '',
+    instructor: '',
+    description: '',
+    price: '',
+    imageUrl: ''
+  })
+
+  const handleInputChange = event => {
+    setValues({...product, [event.target.name]: event.target.value})
+  }
+  const handleSubmit = event => {
+    event.preventDefault()
+    console.log(product)
+  }
   return (
     <MuiThemeProvider theme={theme}>
       <form onSubmit={handleSubmit}>
         <TextField
           type="text"
-          label="Product Name"
+          label=" Product Name"
           name="productName"
           variant="outlined"
           onChange={handleInputChange}
-          value={inputs.productName}
+          value={product.productName}
           required
         />
         <TextField
           type="text"
-          label="Instructor"
+          label=" Instructor"
           name="instructor"
           variant="outlined"
           onChange={handleInputChange}
-          value={inputs.instructor}
+          value={product.instructor}
           required
         />
         <TextField
           type="text"
-          label="Description"
+          label=" Description"
           name="description"
           variant="outlined"
           onChange={handleInputChange}
-          value={inputs.description}
+          value={product.description}
           required
         />
         <TextField
           type="integer"
-          label="Price"
+          label=" Price"
           name="price"
           variant="outlined"
           onChange={handleInputChange}
-          value={inputs.price}
+          value={product.price}
           required
         />
         <TextField
           type="url"
-          label="Image URL"
+          label=" Image URL"
           name="imageUrl"
           variant="outlined"
           onChange={handleInputChange}
-          value={inputs.imageUrl}
+          value={product.imageUrl}
           required
         />
         <Button type="submit" variant="contained" color="primary">
