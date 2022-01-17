@@ -5,8 +5,6 @@ import {
   createTheme,
   MuiThemeProvider
 } from '@material-ui/core'
-import {useSelector} from 'react-redux'
-import useInput from './customHooks'
 
 const theme = createTheme({
   typography: {
