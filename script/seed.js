@@ -6,6 +6,50 @@ const {Product} = require('../server/db/models')
 
 const products = [
   {
+    productName: 'EDM Dance Party',
+    instructor: 'Eric',
+    description:
+      "Socially-distance-dance the night way with Fullstack's resident techno DJ!",
+    price: 50,
+    imageUrl: 'https://www.lafilm.edu/wp-content/uploads/2017/08/Dance-Show.jpg'
+  },
+  {
+    productName: 'Nicki Minaj Listening Session',
+    instructor: 'Amber',
+    description:
+      'Spend sometime enjoying the skillful flow of the beautiful and talented Ms. Nicki Minaj!',
+    price: 50,
+    imageUrl:
+      'http://vh1.mtvnimages.com/uri/mgid:ao:image:mtv:647533?quality=0.8&format=jpg&width=1440&height=810&.jpg'
+  },
+  {
+    productName: 'Totems of New York Photo Walk',
+    instructor: 'Devonne',
+    description:
+      'Take a stroll to visually capture the essence of New York, including unexpectedly closed subway stations and cars double-parking you in!',
+    price: 50,
+    imageUrl:
+      'https://media.nbcnewyork.com/2020/10/4987478283-1080pnbcstations.jpg?quality=85&strip=all&resize=1200%2C675'
+  },
+  {
+    productName: 'Studio Ghibli & Popcorn',
+    instructor: 'Mac',
+    description:
+      'Studio Ghibli and socially-distance chill with Instructor Mac!',
+    price: 50,
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo6c_5hWbXORUqfRgX-CuhADlM7FAfCAtsrC6UZ2MS2qtwrLw4hviFA1AkJj30Y1IY0t0&usqp=CAU'
+  },
+  {
+    productName: 'An Awkward Encouter',
+    instructor: 'Zach',
+    description: '...so umm, yeah. Weather?',
+    price: 50,
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY71MclVp2zr6OjnxwjkuqtnM0mY1q4RTjDw&usqp=CAU'
+  },
+
+  {
     productName: 'Coffee Time',
     instructor: 'Margarita',
     description: 'An elegant way to spend time!',
