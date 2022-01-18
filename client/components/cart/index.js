@@ -102,10 +102,6 @@ const Cart = () => {
     history.push('/checkout')
   }
 
-  if (allProducts === null || allProducts === undefined) {
-    return <div>Loading...</div>
-  }
-
   return !userCart.length ? (
     <div>
       <Paper className={classes.paper}>
@@ -147,63 +143,66 @@ const Cart = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {userCart.map(item => (
-              <TableRow key={item.id}>
-                <TableCell>
-                  <div className={classes.imageRow}>
-                    {
-                      allProducts.filter(product => {
-                        return product.id === item.productId
-                      })[0].productName
-                    }
-                    <br />
-
-                    <img
-                      className={classes.img}
-                      alt="complex"
-                      src={
+            {allProducts.length === 0 ? (
+              <div>Loading...</div>
+            ) : (
+              userCart.map(item => (
+                <TableRow key={item.id}>
+                  <TableCell>
+                    <div className={classes.imageRow}>
+                      {
                         allProducts.filter(product => {
                           return product.id === item.productId
-                        })[0].imageUrl
+                        })[0].productName
                       }
-                    />
-                  </div>
-                </TableCell>
-                <TableCell align="center">
-                  <div>
-                    <Box>
-                      {item.quantity}
                       <br />
-                      <Button
-                        onClick={() => {
-                          if (item.quantity < 5) {
-                            handleUpdateQuantity(
-                              item.id,
-                              item.quantity + 1,
-                              item.price / item.quantity * (item.quantity + 1)
-                            )
-                          } else {
-                            alert('5 is the maximum!')
-                          }
-                        }}
-                      >
-                        +
-                      </Button>
-                      <Button
-                        onClick={() => {
-                          if (item.quantity > 1) {
-                            handleUpdateQuantity(
-                              item.id,
-                              item.quantity - 1,
-                              item.price / item.quantity * (item.quantity - 1)
-                            )
-                          }
-                        }}
-                      >
-                        -
-                      </Button>
-                    </Box>
-                    {/* <FormControl sx={{m: 1, minWidth: 50}}>
+
+                      <img
+                        className={classes.img}
+                        alt="complex"
+                        src={
+                          allProducts.filter(product => {
+                            return product.id === item.productId
+                          })[0].imageUrl
+                        }
+                      />
+                    </div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <div>
+                      <Box>
+                        {item.quantity}
+                        <br />
+                        <Button
+                          onClick={() => {
+                            if (item.quantity < 5) {
+                              handleUpdateQuantity(
+                                item.id,
+                                item.quantity + 1,
+                                item.price / item.quantity * (item.quantity + 1)
+                              )
+                            } else {
+                              alert('5 is the maximum!')
+                            }
+                          }}
+                        >
+                          +
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            if (item.quantity > 1) {
+                              handleUpdateQuantity(
+                                item.id,
+                                item.quantity - 1,
+                                item.price / item.quantity * (item.quantity - 1)
+                              )
+                            }
+                          }}
+                        >
+                          -
+                        </Button>
+                      </Box>
+                      {/* <FormControl sx={{m: 1, minWidth: 50}}>
                       <InputLabel id="demo-simple-select-label" />
                       <NativeSelect
                         id="demo-customized-select-native"
@@ -222,22 +221,22 @@ const Cart = () => {
                           handleUpdateQuantity(item.orderId, item.productId, newQuantity)
                         }}>Update Quantity</Button>
                     </FormControl><br></br> */}
-                    <Button onClick={() => handleRemoveFromCart(item.id)}>
-                      Delete
-                    </Button>
-                  </div>
-                </TableCell>
-                <TableCell align="center">
-                  ${
-                    allProducts.filter(product => {
-                      return product.id === item.productId
-                    })[0].price
-                  }
-                </TableCell>
-                <TableCell align="center">{`$${item.price / 100}`}</TableCell>
-              </TableRow>
-            ))}
-
+                      <Button onClick={() => handleRemoveFromCart(item.id)}>
+                        Delete
+                      </Button>
+                    </div>
+                  </TableCell>
+                  <TableCell align="center">
+                    ${
+                      allProducts.filter(product => {
+                        return product.id === item.productId
+                      })[0].price
+                    }
+                  </TableCell>
+                  <TableCell align="center">{`$${item.price / 100}`}</TableCell>
+                </TableRow>
+              ))
+            )}
             <TableRow>
               <TableCell rowSpan={3} />
               <TableCell colSpan={2} align="center">

@@ -37,14 +37,14 @@ const products = [
     productName: 'Soup - Verve - Chipotle Chicken',
     instructor: 'Ryann',
     description: 'Diab due to undrl cond w diabetic prph angiopath w gangrene',
-    price: 78.6,
+    price: 78,
     imageUrl: 'http://dummyimage.com/125x100.png/ff4444/ffffff'
   },
   {
     productName: 'Cookie - Dough Variety',
     instructor: 'Maryanna',
     description: 'Unsp injury of ulnar artery at wrs/hnd lv of left arm, init',
-    price: 81.68,
+    price: 81,
     imageUrl: 'http://dummyimage.com/111x100.png/5fa2dd/ffffff'
   },
   {
@@ -93,7 +93,7 @@ const products = [
     productName: 'Squid - Tubes / Tenticles 10/20',
     instructor: 'Celestyn',
     description: 'Fall same lev from slip/trip w strk agnst sharp glass, init',
-    price: 39.09,
+    price: 39,
     imageUrl: 'http://dummyimage.com/107x100.png/5fa2dd/ffffff'
   },
   {
