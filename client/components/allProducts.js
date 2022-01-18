@@ -91,14 +91,21 @@ const AllProducts = () => {
                   />
                   <CardContent>
                     <div className={classes.cardContent}>
-                      <Typography variant="h6" gutterBottom>
+                      <Typography variant="h6" gutter-bottom="true">
                         {product.productName}
                       </Typography>
-                      <Typography gutterBottom className={classes.price}>
+                      <Typography
+                        gutter-bottom="true"
+                        className={classes.price}
+                      >
                         ${product.price}
                       </Typography>
                     </div>
-                    <Typography variant="h6" gutterBottom color="secondary">
+                    <Typography
+                      variant="h6"
+                      gutter-bottom="true"
+                      color="secondary"
+                    >
                       With {product.instructor}
                     </Typography>
                   </CardContent>
