@@ -226,7 +226,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
             aria-label="instructors"
             color="inherit"
           >
-            <Typography>Instructors</Typography>
+            <Typography>Instructos</Typography>
           </IconButton>
           <div className={classes.search}>
             {/* <div className={classes.searchIcon}> */}
@@ -259,7 +259,9 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                 <IconButton
                   aria-label="show cart"
                   color="inherit"
-                  onClick={() => history.push(`/cart/${currentUser.id}`)}
+                  onClick={() =>
+                    location.reload(history.push(`/cart/${currentUser.id}`))
+                  }
                 >
                   <Badge
                     badgeContent={currentUserCart.length}
