@@ -11,7 +11,8 @@ import {
   singleProduct,
   Cart,
   Checkout,
-  CreateExperience
+  CreateExperience,
+  adminPage
 } from './components'
 import {me} from './store'
 
@@ -43,6 +44,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route exact path="/cart/:userId" component={Cart} />
             <Route exact path="/checkout" component={Checkout} />
+            <Route path="/admin" component={adminPage} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
