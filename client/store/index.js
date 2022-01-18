@@ -9,13 +9,16 @@ import allOrdersReducer from './orders'
 import allOrderItemsReducer from './orderItems'
 import userCartReducer from './userCart'
 
+import createProductReducer from './createNewProduct'
+
 const reducer = combineReducers({
   user,
   product: singleProductReducer,
   products: allProductsReducer,
   orders: allOrdersReducer,
   orderItems: allOrderItemsReducer,
-  userCart: userCartReducer
+  userCart: userCartReducer,
+  createProduct: createProductReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

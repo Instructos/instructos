@@ -22,12 +22,10 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const order = await Product.findByPk(req.params.id, {
-      include: [Order, OrderItem]
-    })
-    res.send(await order.update(req.body))
+    const product = await Product.create(req.body)
+    res.send(product)
   } catch (error) {
     next(error)
   }

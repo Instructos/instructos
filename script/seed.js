@@ -6,7 +6,6 @@ const {Product} = require('../server/db/models')
 
 const products = [
   {
-    id: 1,
     productName: 'Pepper - Red Thai',
     instructor: 'Cyndy',
     description: 'Occupant (driver) of pk-up/van injured in unsp nontraf',
@@ -14,7 +13,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/238x100.png/5fa2dd/ffffff'
   },
   {
-    id: 2,
     productName: 'Tuna - Salad Premix',
     instructor: 'Jenny',
     description: 'Unsp injury of unsp blood vessel at shldr/up arm, right arm',
@@ -22,7 +20,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/217x100.png/ff4444/ffffff'
   },
   {
-    id: 3,
     productName: 'Pepper - Sorrano',
     instructor: 'Tobey',
     description: 'Stenosis of larynx',
@@ -30,7 +27,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/130x100.png/ff4444/ffffff'
   },
   {
-    id: 4,
     productName: 'Cheese - Ermite Bleu',
     instructor: 'Cornie',
     description: 'Chronic Eustachian salpingitis',
@@ -38,7 +34,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/156x100.png/5fa2dd/ffffff'
   },
   {
-    id: 5,
     productName: 'Soup - Verve - Chipotle Chicken',
     instructor: 'Ryann',
     description: 'Diab due to undrl cond w diabetic prph angiopath w gangrene',
@@ -46,7 +41,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/125x100.png/ff4444/ffffff'
   },
   {
-    id: 6,
     productName: 'Cookie - Dough Variety',
     instructor: 'Maryanna',
     description: 'Unsp injury of ulnar artery at wrs/hnd lv of left arm, init',
@@ -54,7 +48,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/111x100.png/5fa2dd/ffffff'
   },
   {
-    id: 7,
     productName: 'Ocean Spray - Kiwi Strawberry',
     instructor: 'Aleda',
     description: 'Peripheral vasodilators',
@@ -62,7 +55,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/199x100.png/dddddd/000000'
   },
   {
-    id: 8,
     productName: 'Wine - Pinot Noir Latour',
     instructor: 'Rufus',
     description: 'Poisoning by therapeutic gases, accidental (unintentional)',
@@ -70,7 +62,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/103x100.png/dddddd/000000'
   },
   {
-    id: 9,
     productName: 'Crackers - Melba Toast',
     instructor: 'Clovis',
     description: 'Resistance to other specified beta lactam antibiotics',
@@ -78,7 +69,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/206x100.png/cc0000/ffffff'
   },
   {
-    id: 10,
     productName: 'Grapes - Green',
     instructor: 'Lise',
     description: 'Gastric contents in bronchus causing asphyxiation, subs',
@@ -86,7 +76,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/113x100.png/ff4444/ffffff'
   },
   {
-    id: 11,
     productName: 'Beef Ground Medium',
     instructor: 'Gav',
     description: 'Poisoning by opium, undetermined',
@@ -94,7 +83,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/131x100.png/5fa2dd/ffffff'
   },
   {
-    id: 12,
     productName: 'Beef - Bones, Cut - Up',
     instructor: 'Sianna',
     description: 'Major laceration of right internal jugular vein, init encntr',
@@ -102,7 +90,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/113x100.png/5fa2dd/ffffff'
   },
   {
-    id: 13,
     productName: 'Squid - Tubes / Tenticles 10/20',
     instructor: 'Celestyn',
     description: 'Fall same lev from slip/trip w strk agnst sharp glass, init',
@@ -110,7 +97,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/107x100.png/5fa2dd/ffffff'
   },
   {
-    id: 14,
     productName: 'Ice Cream Bar - Hagen Daz',
     instructor: 'Dede',
     description: 'Disp fx of shaft of fifth metacarpal bone, left hand, init',
@@ -118,7 +104,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/146x100.png/5fa2dd/ffffff'
   },
   {
-    id: 15,
     productName: 'Mushrooms - Honey',
     instructor: 'Adena',
     description: 'Poisoning by ganglionic blocking drugs, undetermined, init',
@@ -126,7 +111,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/111x100.png/ff4444/ffffff'
   },
   {
-    id: 16,
     productName: 'Chevril',
     instructor: 'Vivian',
     description: 'Postprocedural stenosis of left external ear canal',
@@ -134,7 +118,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/243x100.png/dddddd/000000'
   },
   {
-    id: 17,
     productName: 'Bag - Clear 7 Lb',
     instructor: 'Courtney',
     description: 'Athscl type of bypass of the right leg w ulceration of calf',
@@ -142,7 +125,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/249x100.png/cc0000/ffffff'
   },
   {
-    id: 18,
     productName: 'Buttons',
     instructor: 'Claus',
     description: 'Disp fx of posterior wall of right acetabulum, sequela',
@@ -150,7 +132,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/140x100.png/5fa2dd/ffffff'
   },
   {
-    id: 19,
     productName: 'Energy Drink - Redbull 355ml',
     instructor: 'Zoe',
     description: 'Crushing injury of head, part unspecified, subs encntr',
@@ -158,7 +139,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/183x100.png/dddddd/000000'
   },
   {
-    id: 20,
     productName: 'Tomatoes - Yellow Hot House',
     instructor: 'Melita',
     description: 'Malignant neoplasm of short bones of right upper limb',

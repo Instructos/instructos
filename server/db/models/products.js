@@ -10,7 +10,7 @@ const Product = db.define('product', {
     }
   },
   imageUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     validate: {
       isUrl: true
