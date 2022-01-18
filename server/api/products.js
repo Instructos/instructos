@@ -27,7 +27,7 @@ router.put('/:id', async (req, res, next) => {
     const order = await Product.findByPk(req.params.id, {
       include: [Order, OrderItem]
     })
-    res.send(await student.update(req.body))
+    res.send(await order.update(req.body))
   } catch (error) {
     next(error)
   }

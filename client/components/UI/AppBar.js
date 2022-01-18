@@ -226,7 +226,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
             aria-label="instructors"
             color="inherit"
           >
-            <Typography>Instructors</Typography>
+            <Typography>Instructos</Typography>
           </IconButton>
           <div className={classes.search}>
             {/* <div className={classes.searchIcon}> */}

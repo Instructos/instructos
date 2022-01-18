@@ -7,7 +7,6 @@ import singleProductReducer from './singleProduct'
 import allProductsReducer from './allProduct'
 import allOrdersReducer from './orders'
 import allOrderItemsReducer from './orderItems'
-
 import userCartReducer from './userCart'
 
 const reducer = combineReducers({

@@ -8,19 +8,17 @@ import user, {me} from '../store/user'
 import {
   Box,
   Grid,
-  Card,
-  CardActions,
-  CardContent,
   Button,
+  Popover,
   Typography,
   Container
 } from '@material-ui/core'
+
 import {
   createTheme,
   MuiThemeProvider,
   makeStyles
 } from '@material-ui/core/styles'
-// import {textAlign} from '@material-ui/system'
 
 const theme = createTheme({
   typography: {
@@ -83,8 +81,6 @@ const SingleProduct = () => {
 
   function handleClick(event) {
     event.preventDefault()
-    //console.log('Clicked!')
-    //setQuantity(quantity+1)
 
     //add the order
     //NOTE SEED DATA IS NOT INTEGER TYPE
@@ -93,7 +89,7 @@ const SingleProduct = () => {
         productId: product.id,
         userId: currentUser.id,
         quantity: quantity,
-        price: 5000
+        price: product.price * 100
       })
     )
   }
