@@ -1,6 +1,6 @@
 function adminAuth(req, res, next) {
   if (req.user.isAdmin) {
-    next()
+    return next()
   } else {
     res.sendStatus(403)
   }

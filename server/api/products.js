@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Product, Order, OrderItem} = require('../db/models')
-
+const {adminAuth} = require('../auth/adminMiddleware')
 // Getting all products
 router.get('/', async (req, res, next) => {
   try {
@@ -25,9 +25,23 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const order = await Product.findByPk(req.params.id, {
-      include: [Order, OrderItem]
+      // include: [Order, OrderItem]
     })
-    res.send(await student.update(req.body))
+    res.send(await order.update(req.body))
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id
+    await Product.destroy({
+      where: {
+        id: id
+      }
+    })
+    res.send(`Product id of "${id}" has been deleted`)
   } catch (error) {
     next(error)
   }

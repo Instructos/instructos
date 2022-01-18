@@ -104,12 +104,12 @@ const AllProducts = () => {
                   </CardContent>
                 </Link>
                 <CardActions disableSpacing className={classes.CardActions}>
-                  <IconButton variant="contained" color="primary" gutterBottom>
+                  {/* <IconButton variant="contained" color="primary" gutterBottom>
                     <img
                       src="https://media.istockphoto.com/vectors/red-heart-in-shopping-cart-vector-icon-vector-id920398794?k=20&m=920398794&s=170667a&w=0&h=e8F6W3Yjye5FCo_JUPblBgTyNqzcUqWpZiFn26i5aYw="
                       className="all-view-cart"
                     />
-                  </IconButton>
+                  </IconButton> */}
                 </CardActions>
               </Card>
             </Grid>
