@@ -209,7 +209,6 @@ function MenuAppBar({handleClick, isLoggedIn}) {
               INSTRUCTOS
             </Typography>
           </IconButton>
-
           <IconButton
             onClick={() => {
               history.push('/experiences')
@@ -219,20 +218,23 @@ function MenuAppBar({handleClick, isLoggedIn}) {
           >
             <Typography>Experiences</Typography>
           </IconButton>
-          <IconButton
+
+          {/* <IconButton
             onClick={() => {
               history.push('/instructors')
             }}
             aria-label="instructors"
             color="inherit"
           >
-            <Typography>Instructos</Typography>
+          <Typography>Instructors</Typography>
           </IconButton>
           <div className={classes.search}>
-            {/* <div className={classes.searchIcon}> */}
-            {/* <SearchIcon /> */}
-            {/* <Typography>Search</Typography> */}
-            {/* </div> */}
+            <div className={classes.searchIcon}> */}
+
+          {/* <SearchIcon/> */}
+          {/* <Typography>Search</Typography> */}
+
+          {/* </div>
             <InputBase
               placeholder="Search…"
               classes={{
@@ -241,7 +243,8 @@ function MenuAppBar({handleClick, isLoggedIn}) {
               }}
               inputProps={{'aria-label': 'search'}}
             />
-          </div>
+            </div> */}
+
           <div className={classes.grow} />
           {isLoggedIn ? (
             <div>

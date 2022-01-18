@@ -6,144 +6,47 @@ const {Product} = require('../server/db/models')
 
 const products = [
   {
-    productName: 'Pepper - Red Thai',
-    instructor: 'Cyndy',
-    description: 'Occupant (driver) of pk-up/van injured in unsp nontraf',
-    price: 63.61,
-    imageUrl: 'http://dummyimage.com/238x100.png/5fa2dd/ffffff'
+    productName: 'EDM Dance Party',
+    instructor: 'Eric',
+    description:
+      "Socially-distance-dance the night way with Fullstack's resident techno DJ!",
+    price: 50,
+    imageUrl: 'https://www.lafilm.edu/wp-content/uploads/2017/08/Dance-Show.jpg'
   },
   {
-    productName: 'Tuna - Salad Premix',
-    instructor: 'Jenny',
-    description: 'Unsp injury of unsp blood vessel at shldr/up arm, right arm',
-    price: 78.59,
-    imageUrl: 'http://dummyimage.com/217x100.png/ff4444/ffffff'
+    productName: 'Nicki Minaj Listening Session',
+    instructor: 'Amber',
+    description:
+      'Spend sometime enjoying the skillful flow of the beautiful and talented Ms. Nicki Minaj!',
+    price: 50,
+    imageUrl:
+      'http://vh1.mtvnimages.com/uri/mgid:ao:image:mtv:647533?quality=0.8&format=jpg&width=1440&height=810&.jpg'
   },
   {
-    productName: 'Pepper - Sorrano',
-    instructor: 'Tobey',
-    description: 'Stenosis of larynx',
-    price: 32.96,
-    imageUrl: 'http://dummyimage.com/130x100.png/ff4444/ffffff'
+    productName: 'Totems of New York Photo Walk',
+    instructor: 'Devonne',
+    description:
+      'Take a stroll to visually capture the essence of New York, including unexpectedly closed subway stations and cars double-parking you in!',
+    price: 50,
+    imageUrl:
+      'https://media.nbcnewyork.com/2020/10/4987478283-1080pnbcstations.jpg?quality=85&strip=all&resize=1200%2C675'
   },
   {
-    productName: 'Cheese - Ermite Bleu',
-    instructor: 'Cornie',
-    description: 'Chronic Eustachian salpingitis',
-    price: 21.6,
-    imageUrl: 'http://dummyimage.com/156x100.png/5fa2dd/ffffff'
+    productName: 'Studio Ghibli & Popcorn',
+    instructor: 'Mac',
+    description:
+      'Studio Ghibli and socially-distance chill with Instructor Mac!',
+    price: 50,
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo6c_5hWbXORUqfRgX-CuhADlM7FAfCAtsrC6UZ2MS2qtwrLw4hviFA1AkJj30Y1IY0t0&usqp=CAU'
   },
   {
-    productName: 'Soup - Verve - Chipotle Chicken',
-    instructor: 'Ryann',
-    description: 'Diab due to undrl cond w diabetic prph angiopath w gangrene',
-    price: 78,
-    imageUrl: 'http://dummyimage.com/125x100.png/ff4444/ffffff'
-  },
-  {
-    productName: 'Cookie - Dough Variety',
-    instructor: 'Maryanna',
-    description: 'Unsp injury of ulnar artery at wrs/hnd lv of left arm, init',
-    price: 81,
-    imageUrl: 'http://dummyimage.com/111x100.png/5fa2dd/ffffff'
-  },
-  {
-    productName: 'Ocean Spray - Kiwi Strawberry',
-    instructor: 'Aleda',
-    description: 'Peripheral vasodilators',
-    price: 56.76,
-    imageUrl: 'http://dummyimage.com/199x100.png/dddddd/000000'
-  },
-  {
-    productName: 'Wine - Pinot Noir Latour',
-    instructor: 'Rufus',
-    description: 'Poisoning by therapeutic gases, accidental (unintentional)',
-    price: 5.87,
-    imageUrl: 'http://dummyimage.com/103x100.png/dddddd/000000'
-  },
-  {
-    productName: 'Crackers - Melba Toast',
-    instructor: 'Clovis',
-    description: 'Resistance to other specified beta lactam antibiotics',
-    price: 40.36,
-    imageUrl: 'http://dummyimage.com/206x100.png/cc0000/ffffff'
-  },
-  {
-    productName: 'Grapes - Green',
-    instructor: 'Lise',
-    description: 'Gastric contents in bronchus causing asphyxiation, subs',
-    price: 73.06,
-    imageUrl: 'http://dummyimage.com/113x100.png/ff4444/ffffff'
-  },
-  {
-    productName: 'Beef Ground Medium',
-    instructor: 'Gav',
-    description: 'Poisoning by opium, undetermined',
-    price: 6.43,
-    imageUrl: 'http://dummyimage.com/131x100.png/5fa2dd/ffffff'
-  },
-  {
-    productName: 'Beef - Bones, Cut - Up',
-    instructor: 'Sianna',
-    description: 'Major laceration of right internal jugular vein, init encntr',
-    price: 82.45,
-    imageUrl: 'http://dummyimage.com/113x100.png/5fa2dd/ffffff'
-  },
-  {
-    productName: 'Squid - Tubes / Tenticles 10/20',
-    instructor: 'Celestyn',
-    description: 'Fall same lev from slip/trip w strk agnst sharp glass, init',
-    price: 39,
-    imageUrl: 'http://dummyimage.com/107x100.png/5fa2dd/ffffff'
-  },
-  {
-    productName: 'Ice Cream Bar - Hagen Daz',
-    instructor: 'Dede',
-    description: 'Disp fx of shaft of fifth metacarpal bone, left hand, init',
-    price: 42.34,
-    imageUrl: 'http://dummyimage.com/146x100.png/5fa2dd/ffffff'
-  },
-  {
-    productName: 'Mushrooms - Honey',
-    instructor: 'Adena',
-    description: 'Poisoning by ganglionic blocking drugs, undetermined, init',
-    price: 62.48,
-    imageUrl: 'http://dummyimage.com/111x100.png/ff4444/ffffff'
-  },
-  {
-    productName: 'Chevril',
-    instructor: 'Vivian',
-    description: 'Postprocedural stenosis of left external ear canal',
-    price: 48.5,
-    imageUrl: 'http://dummyimage.com/243x100.png/dddddd/000000'
-  },
-  {
-    productName: 'Bag - Clear 7 Lb',
-    instructor: 'Courtney',
-    description: 'Athscl type of bypass of the right leg w ulceration of calf',
-    price: 47.04,
-    imageUrl: 'http://dummyimage.com/249x100.png/cc0000/ffffff'
-  },
-  {
-    productName: 'Buttons',
-    instructor: 'Claus',
-    description: 'Disp fx of posterior wall of right acetabulum, sequela',
-    price: 29.67,
-    imageUrl: 'http://dummyimage.com/140x100.png/5fa2dd/ffffff'
-  },
-  {
-    productName: 'Energy Drink - Redbull 355ml',
-    instructor: 'Zoe',
-    description: 'Crushing injury of head, part unspecified, subs encntr',
-    price: 56.58,
-    imageUrl: 'http://dummyimage.com/183x100.png/dddddd/000000'
-  },
-  {
-    productName: 'Tomatoes - Yellow Hot House',
-    instructor: 'Melita',
-    description: 'Malignant neoplasm of short bones of right upper limb',
-    price: 27.88,
-    imageUrl: 'http://dummyimage.com/114x100.png/ff4444/ffffff'
+    productName: 'An Awkward Encouter',
+    instructor: 'Zach',
+    description: '...so umm, yeah. Weather?',
+    price: 50,
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY71MclVp2zr6OjnxwjkuqtnM0mY1q4RTjDw&usqp=CAU'
   }
 ]
 
