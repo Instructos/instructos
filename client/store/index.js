@@ -8,7 +8,7 @@ import allProductsReducer from './allProduct'
 import allOrdersReducer from './orders'
 import allOrderItemsReducer from './orderItems'
 import userCartReducer from './userCart'
-
+import editProductReducer from './editProduct'
 import createProductReducer from './createNewProduct'
 
 const reducer = combineReducers({
@@ -18,7 +18,8 @@ const reducer = combineReducers({
   orders: allOrdersReducer,
   orderItems: allOrderItemsReducer,
   userCart: userCartReducer,
-  createProduct: createProductReducer
+  createProduct: createProductReducer,
+  editProduct: editProductReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -32,3 +33,4 @@ export * from './allProduct'
 export * from './orders'
 export * from './orderItems'
 export * from './userCart'
+export * from './editProduct'
