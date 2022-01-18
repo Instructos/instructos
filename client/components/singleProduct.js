@@ -109,7 +109,7 @@ const SingleProduct = () => {
         <Typography
           component="div"
           color="primary"
-          gutterBottom
+          gutter-bottom="true"
           className={classes.productName}
         >
           {product.productName}
@@ -117,7 +117,7 @@ const SingleProduct = () => {
         <Typography
           variant="h4"
           color="secondary"
-          gutterBottom
+          gutter-bottom="true"
           className={classes.instructor}
         >
           <span className="single-view-span">with</span> {product.instructor}
@@ -126,7 +126,7 @@ const SingleProduct = () => {
       <Typography
         className={classes.description}
         color="secondary"
-        gutterBottom
+        gutter-bottom="true"
       >
         {product.description}
       </Typography>
@@ -135,7 +135,7 @@ const SingleProduct = () => {
         <Button
           variant="contained"
           color="primary"
-          gutterBottom
+          gutter-bottom="true"
           className="single-view-button"
           style={{marginLeft: '30px'}}
           onClick={handleClick}
