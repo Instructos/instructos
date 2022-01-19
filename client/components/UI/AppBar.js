@@ -105,6 +105,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
     dispatch(me())
   }, [])
   const id = currentUser.id
+  console.log(id)
 
   let currentUserCart = useSelector(state => state.userCart)
   useEffect(() => {
@@ -262,6 +263,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                 <IconButton
                   aria-label="show cart"
                   color="inherit"
+                  userId={id}
                   onClick={() => location.reload(history.push(`/cart`))}
                 >
                   <Badge

@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Cart = () => {
+const Cart = props => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const userCart = useSelector(state => state.userCart)
@@ -88,16 +88,17 @@ const Cart = () => {
   }, [])
 
   // const [newQuantity, setNewQuantity] = React.useState(0)
-  console.log(currentUser)
-  const {id} = currentUser
-  console.log(id)
+
+  const id = currentUser.id
 
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [])
 
   useEffect(() => {
-    dispatch(getUserCart(id))
+    if (id) {
+      dispatch(getUserCart())
+    }
   }, [])
 
   useEffect(
