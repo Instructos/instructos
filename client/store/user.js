@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const DELETE_USER = 'DELETE_USER'
 
 /**
  * INITIAL STATE
@@ -17,6 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const deleteUser = userId => ({type: DELETE_USER, userId})
 
 /**
  * THUNK CREATORS
@@ -51,6 +53,24 @@ export const logout = () => async dispatch => {
     await axios.post('/auth/logout')
     dispatch(removeUser())
     history.push('/login')
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const isAdmin = (userId, toggAdmin) => async dispatch => {
+  try {
+    await axios.put(`/api/users/${userId}`, {toggAdmin})
+    //  history.push('/userManagement')
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const deleteUserThunk = userId => async dispatch => {
+  try {
+    await axios.delete(`/api/users/`, {params: {id: userId}})
+    dispatch(deleteUser(userId))
   } catch (err) {
     console.error(err)
   }
