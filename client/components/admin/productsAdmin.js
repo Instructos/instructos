@@ -9,13 +9,16 @@ import {
   TableRow,
   Paper,
   IconButton,
-  TextField
+  Box,
+  Button,
+  Typography,
+  Modal
 } from '@material-ui/core'
 import {Link} from 'react-router-dom'
 import {makeStyles} from '@material-ui/core/styles'
-import editPage from './editPage'
 import {fetchAllProducts} from '../../store/allProduct'
 import {deleteProduct, editProduct} from '../../store/editProduct'
+import editPage from './editPage'
 
 const useStyles = makeStyles({
   icon: {
@@ -26,6 +29,18 @@ const useStyles = makeStyles({
   }
 })
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 300,
+  backgroundColor: 'white',
+  border: '2px solid #000',
+  boxShadow: 10,
+  p: 20
+}
+
 const ProductsAdmin = () => {
   const classes = useStyles()
   let products = useSelector(state => state.products)
@@ -33,6 +48,10 @@ const ProductsAdmin = () => {
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [])
+
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   return (
     <div>
@@ -60,14 +79,26 @@ const ProductsAdmin = () => {
                 <TableCell align="right">{row.price}</TableCell>
                 <TableCell align="right">{row.description}</TableCell>
                 <TableCell>
-                  <Link to={`/admin/products/${row.id}`} key={row.id}>
-                    <IconButton
-                      className={classes.icon}
-                      onClick={() => editProduct(row.id)}
-                    >
-                      Edit
-                    </IconButton>
-                  </Link>
+                  <IconButton className={classes.icon} onClick={handleOpen}>
+                    Edit
+                  </IconButton>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+
+          </Typography> */}
+
+                      <editPage />
+                    </Box>
+                  </Modal>
                   <IconButton
                     className={classes.icon}
                     onClick={deleteProduct(row.id)}

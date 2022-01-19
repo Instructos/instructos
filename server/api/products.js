@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Product, Order, OrderItem} = require('../db/models')
-
+const adminAuth = require('../auth/adminMiddleware')
 // Getting all products
 router.get('/', async (req, res, next) => {
   try {
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', adminAuth, async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
     res.send(product)
@@ -31,17 +31,19 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', adminAuth, async (req, res, next) => {
+  try {
+    const productToUpdate = await Product.findByPk(req.params.id)
+    res.send(productToUpdate.update(req.body))
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.delete('/:id', async (req, res, next) => {
   try {
-    const id = req.params.id
-    await Product.destroy({
-      where: {
-        id: id
-      }
-    })
-    res.send(`Product id of "${id}" has been deleted`)
-    const product = await Product.create(req.body)
-    res.send(product)
+    const productToDelete = await Product.findByPk(req.params.id)
+    res.send(productToDelete.destroy(req.body))
   } catch (error) {
     next(error)
   }

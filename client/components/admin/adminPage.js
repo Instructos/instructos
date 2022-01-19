@@ -47,7 +47,6 @@ const adminPage = () => {
         <Sidebar />
       </div>
       <div className="adminBody"> Welcome to the Admin Page</div>
-      <ProductsAdmin />
     </MuiThemeProvider>
   )
 }

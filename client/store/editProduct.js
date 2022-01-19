@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 
 //action types
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
@@ -25,7 +24,6 @@ export const deleteProduct = id => {
     try {
       const {data} = await axios.delete(`/api/products/${id}`)
       dispatch(_deleteProduct(data))
-      history.push('/admin')
     } catch (error) {
       console.log(error)
     }
@@ -43,12 +41,12 @@ export const editProduct = (id, product) => {
   }
 }
 
-export default function editProductReducer(state = {}, action) {
+export default function editProductReducer(state = [], action) {
   switch (action.type) {
     case EDIT_PRODUCT:
       return [...state, action.product]
     case DELETE_PRODUCT:
-      return [...state, action.product]
+      return state.filter(product => product.id !== action.product.id)
     default:
       return state
   }

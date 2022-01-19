@@ -23,6 +23,8 @@ import {getUserCart} from '../../store/userCart'
 
 import {fetchAllProducts} from '../../store/allProduct'
 import {deleteOrder, updateOrder, completeOrder} from '../../store'
+import {me} from '../../store/user'
+import GuestCart from './guestCart'
 
 import history from '../../history'
 
@@ -72,28 +74,48 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Cart = () => {
+const Cart = props => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const userCart = useSelector(state => state.userCart)
   let allProducts = useSelector(state => state.products)
+  const [count, setCount] = useState(0)
+
+  let currentUser = useSelector(state => state.user)
+
+  useEffect(() => {
+    dispatch(me())
+  }, [])
 
   // const [newQuantity, setNewQuantity] = React.useState(0)
-  const {userId} = useParams()
+
+  const id = currentUser.id
 
   useEffect(() => {
     dispatch(fetchAllProducts())
-    dispatch(getUserCart(userId))
   }, [])
 
+  useEffect(() => {
+    if (id) {
+      dispatch(getUserCart())
+    }
+  }, [])
+
+  useEffect(
+    () => {
+      setCount()
+    },
+    [count]
+  )
+
   const handleRemoveFromCart = orderId => {
+    setCount(count + 1)
     dispatch(deleteOrder(orderId))
-    location.reload()
   }
 
   const handleUpdateQuantity = (orderItemId, quantity, price) => {
+    setCount(count + 1)
     dispatch(updateOrder(orderItemId, {quantity: quantity, price: price}))
-    location.reload()
   }
 
   const handleCheckout = () => {
@@ -102,7 +124,9 @@ const Cart = () => {
     history.push('/checkout')
   }
 
-  return !userCart.length ? (
+  return !id ? (
+    <GuestCart classes={classes} />
+  ) : !userCart.length ? (
     <div>
       <Paper className={classes.paper}>
         <div align="center">

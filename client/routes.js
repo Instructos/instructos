@@ -10,7 +10,9 @@ import {
   Cart,
   Checkout,
   CreateExperience,
-  adminPage
+  adminPage,
+  ProductsAdmin,
+  editPage
 } from './components'
 import {me} from './store'
 import AllUsers from './components/admin/AllUsers'
@@ -28,7 +30,14 @@ const Routes = () => {
 
   const isAdmin = useSelector(state => state.user.isAdmin)
   const adminPortal = isAdmin && (
-    <Route exact path="/users" component={AllUsers} />
+    <Switch>
+      <Route exact path="/admin/users" component={AllUsers} />
+      <Route exact path="/admin" component={adminPage} />
+      <Route exact path="/admin/products" component={ProductsAdmin} />
+      <Route path="/admin/createExperience" component={CreateExperience} />
+      <Route exact path="/admin/products/:id" component={editPage} />
+      <Route exact path="/admin/editProduct" component={editPage} />
+    </Switch>
   )
   return (
     <Switch>
@@ -39,15 +48,14 @@ const Routes = () => {
       <Route path="/experiences" component={AllProducts} />
       <Route path="/signup" component={Signup} />
       <Route path="/products/:id" component={singleProduct} />
-      <Route path="/cart/:userId" component={Cart} />
-      <Route path="/createExperience" component={CreateExperience} />
+      <Route path="/cart" component={Cart} />
+      <Route exact path="/checkout" component={Checkout} />
       {isLoggedIn && (
         <Switch>
           {/* Routes placed here are only available after logging in */}
           <Route path="/home" component={UserHome} />
-          <Route exact path="/cart/:userId" component={Cart} />
+          <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
-          <Route path="/admin" component={adminPage} />
           {adminPortal}
         </Switch>
       )}
