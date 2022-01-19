@@ -62,22 +62,28 @@ const useStyles = makeStyles({
 })
 
 const SingleProduct = () => {
-  let product = useSelector(state => state.product)
   const dispatch = useDispatch()
   const {id} = useParams()
 
+  let product = useSelector(state => state.product)
   useEffect(() => {
     dispatch(singleProduct(id))
   }, [])
 
-  //NEW CODE:
-  //have access to currentUser, product, and quantity
   let currentUser = useSelector(state => state.user)
   useEffect(() => {
     dispatch(me())
   }, [])
 
   const [quantity, setQuantity] = useState(1)
+
+  const [cart, setCart] = useState([])
+  useEffect(
+    () => {
+      localStorage.setItem('cart', JSON.stringify(cart))
+    },
+    [cart]
+  )
 
   function handleClick(event) {
     event.preventDefault()

@@ -77,23 +77,34 @@ const Cart = () => {
   const dispatch = useDispatch()
   const userCart = useSelector(state => state.userCart)
   let allProducts = useSelector(state => state.products)
+  const [count, setCount] = useState(-1)
 
   // const [newQuantity, setNewQuantity] = React.useState(0)
   const {userId} = useParams()
 
   useEffect(() => {
     dispatch(fetchAllProducts())
+  }, [])
+
+  useEffect(() => {
     dispatch(getUserCart(userId))
   }, [])
 
+  useEffect(
+    () => {
+      setCount()
+    },
+    [count]
+  )
+
   const handleRemoveFromCart = orderId => {
+    setCount(count + 1)
     dispatch(deleteOrder(orderId))
-    location.reload()
   }
 
   const handleUpdateQuantity = (orderItemId, quantity, price) => {
+    setCount(count + 1)
     dispatch(updateOrder(orderItemId, {quantity: quantity, price: price}))
-    location.reload()
   }
 
   const handleCheckout = () => {
