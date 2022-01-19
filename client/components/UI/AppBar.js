@@ -105,11 +105,13 @@ function MenuAppBar({handleClick, isLoggedIn}) {
     dispatch(me())
   }, [])
   const id = currentUser.id
-  console.log(id)
 
   let currentUserCart = useSelector(state => state.userCart)
+
   useEffect(() => {
-    dispatch(getUserCart())
+    if (id) {
+      dispatch(getUserCart())
+    }
   }, [])
 
   const handleProfileMenuOpen = event => {
@@ -307,7 +309,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
               <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                 <IconButton
                   onClick={() => {
-                    history.push('/signin')
+                    history.push('/login')
                   }}
                   aria-label="login"
                   color="inherit"

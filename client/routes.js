@@ -41,6 +41,7 @@ const Routes = () => {
       <Route path="/products/:id" component={singleProduct} />
       <Route path="/cart" component={Cart} />
       <Route path="/createExperience" component={CreateExperience} />
+      <Route exact path="/checkout" component={Checkout} />
       {isLoggedIn && (
         <Switch>
           {/* Routes placed here are only available after logging in */}
