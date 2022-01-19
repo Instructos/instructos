@@ -100,15 +100,9 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:orderId', async (req, res, next) => {
   try {
-    await OrderItem.destroy({
-      where: {
-        id: req.params.orderId
-      }
-    })
-    // const orderToDelete = await OrderItem.findByPk(req.params.orderId);
-    // await orderToDelete.destroy();
-    // res.send(orderToDelete)
-    res.send(204)
+    const orderToDelete = await OrderItem.findByPk(req.params.orderId)
+    await orderToDelete.destroy()
+    res.send(orderToDelete)
   } catch (error) {
     next(error)
   }

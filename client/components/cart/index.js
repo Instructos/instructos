@@ -74,20 +74,29 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Cart = props => {
+const Cart = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const userCart = useSelector(state => state.userCart)
-  let allProducts = useSelector(state => state.products)
-  const [count, setCount] = useState(0)
+  let userCart = useSelector(state => state.userCart)
 
+  let allProducts = useSelector(state => state.products)
   let currentUser = useSelector(state => state.user)
+
+  const quantity = userCart
+    .map(item => item.quantity)
+    .reduce((previous, current) => previous + current, 0)
+
+  // const [totalQuantity, setTotalQuantity] = useState(quantity)
+
+  // const getTotalQuantity = (totalQuantity) => setTotalQuantity(totalQuantity);
+
+  // useEffect(()=>{
+  //   getTotalQuantity(quantity);
+  // },[quantity])
 
   useEffect(() => {
     dispatch(me())
   }, [])
-
-  // const [newQuantity, setNewQuantity] = React.useState(0)
 
   const id = currentUser.id
 
@@ -96,30 +105,20 @@ const Cart = props => {
   }, [])
 
   useEffect(() => {
-    if (id) {
-      dispatch(getUserCart())
-    }
+    // if (id) {
+    dispatch(getUserCart())
+    // }
   }, [])
 
-  useEffect(
-    () => {
-      setCount()
-    },
-    [count]
-  )
-
   const handleRemoveFromCart = orderId => {
-    setCount(count + 1)
     dispatch(deleteOrder(orderId))
   }
 
   const handleUpdateQuantity = (orderItemId, quantity, price) => {
-    setCount(count + 1)
     dispatch(updateOrder(orderItemId, {quantity: quantity, price: price}))
   }
 
   const handleCheckout = () => {
-    console.log(userCart[0].orderId)
     dispatch(completeOrder({orderId: userCart[0].orderId}))
     history.push('/checkout')
   }
