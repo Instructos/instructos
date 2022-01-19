@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const adminAuth = require('../auth/adminMiddleware')
 const {Product, Order, OrderItem} = require('../db/models')
 
 // Getting all products
@@ -22,16 +23,17 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', adminAuth, async (req, res, next) => {
   try {
-    const product = await Product.create(req.body)
-    res.send(product)
-  } catch (error) {
-    next(error)
+    let product = await Product.create(req.body)
+    res.json(product)
+  } catch (err) {
+    next(err)
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', adminAuth, async (req, res, next) => {
+  console.log('req.user', req.user)
   try {
     const id = req.params.id
     await Product.destroy({

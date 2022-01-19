@@ -13,7 +13,7 @@ import {
   Button,
   Typography
 } from '@material-ui/core'
-import {isAdmin} from '../../store/user'
+import {isAdmin, deleteUserThunk} from '../../store/user'
 
 class AllUsers extends Component {
   constructor() {
@@ -28,6 +28,13 @@ class AllUsers extends Component {
     this.setState({
       users: data
     })
+  }
+
+  handleDeleteUser(userId) {
+    this.props.deleteUser(userId)
+    this.setState(prevState => ({
+      users: prevState.users.filter(user => user.id !== userId)
+    }))
   }
 
   render() {
@@ -47,7 +54,7 @@ class AllUsers extends Component {
               </TableHead>
               <TableBody>
                 {this.state.users.map(user => {
-                  console.log('Here', user)
+                  console.log('User', user)
                   return (
                     <TableRow key={user.id}>
                       <TableCell>{user.id}</TableCell>
@@ -65,7 +72,11 @@ class AllUsers extends Component {
                         </Button>
                       </TableCell>
                       <TableCell>
-                        <Button variant="outlined" color="secondary">
+                        <Button
+                          variant="outlined"
+                          color="secondary"
+                          onClick={() => this.handleDeleteUser(user.id)}
+                        >
                           Delete
                         </Button>
                       </TableCell>
@@ -83,7 +94,8 @@ class AllUsers extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    isAdmin: (userId, adminStatus) => dispatch(isAdmin(userId, adminStatus))
+    isAdmin: (userId, adminStatus) => dispatch(isAdmin(userId, adminStatus)),
+    deleteUser: userId => dispatch(deleteUserThunk(userId, true))
   }
 }
 
