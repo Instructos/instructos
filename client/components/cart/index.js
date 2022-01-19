@@ -23,6 +23,8 @@ import {getUserCart} from '../../store/userCart'
 
 import {fetchAllProducts} from '../../store/allProduct'
 import {deleteOrder, updateOrder, completeOrder} from '../../store'
+import {me} from '../../store/user'
+import GuestCart from './guestCart'
 
 import history from '../../history'
 
@@ -77,17 +79,25 @@ const Cart = () => {
   const dispatch = useDispatch()
   const userCart = useSelector(state => state.userCart)
   let allProducts = useSelector(state => state.products)
-  const [count, setCount] = useState(-1)
+  const [count, setCount] = useState(0)
+
+  let currentUser = useSelector(state => state.user)
+
+  useEffect(() => {
+    dispatch(me())
+  }, [])
 
   // const [newQuantity, setNewQuantity] = React.useState(0)
-  const {userId} = useParams()
+  console.log(currentUser)
+  const {id} = currentUser
+  console.log(id)
 
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [])
 
   useEffect(() => {
-    dispatch(getUserCart(userId))
+    dispatch(getUserCart(id))
   }, [])
 
   useEffect(
@@ -113,7 +123,9 @@ const Cart = () => {
     history.push('/checkout')
   }
 
-  return !userCart.length ? (
+  return !id ? (
+    <GuestCart classes={classes} />
+  ) : !userCart.length ? (
     <div>
       <Paper className={classes.paper}>
         <div align="center">

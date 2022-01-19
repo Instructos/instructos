@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useParams} from 'react-router-dom/cjs/react-router-dom.min'
 import {singleProduct} from '../store/singleProduct'
 import {addOrder} from '../store/orders'
-import user, {me} from '../store/user'
+import {me} from '../store/user'
 
 import {
   Box,
@@ -66,11 +66,13 @@ const SingleProduct = () => {
   const {id} = useParams()
 
   let product = useSelector(state => state.product)
+
   useEffect(() => {
     dispatch(singleProduct(id))
   }, [])
 
   let currentUser = useSelector(state => state.user)
+
   useEffect(() => {
     dispatch(me())
   }, [])
@@ -78,26 +80,51 @@ const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1)
 
   const [cart, setCart] = useState([])
-  useEffect(
-    () => {
-      localStorage.setItem('cart', JSON.stringify(cart))
-    },
-    [cart]
-  )
+  let localCart = localStorage.getItem('cart')
+  useEffect(() => {
+    localCart = JSON.parse(localCart)
+    if (localCart) setCart(localCart)
+  }, [])
 
   function handleClick(event) {
     event.preventDefault()
 
-    //add the order
-    //NOTE SEED DATA IS NOT INTEGER TYPE
-    dispatch(
-      addOrder({
-        productId: product.id,
-        userId: currentUser.id,
-        quantity: quantity,
-        price: product.price * 100
-      })
-    )
+    if (currentUser.id) {
+      dispatch(
+        addOrder({
+          productId: product.id,
+          userId: currentUser.id,
+          quantity: quantity,
+          price: product.price * 100
+        })
+      )
+    } else {
+      let cartCopy = [...cart]
+      let productId = product.id
+      let existingItem = cartCopy.find(item => item.productId === productId)
+
+      if (existingItem) {
+        if (existingItem.quantity < 5) {
+          existingItem.quantity += 1
+          existingItem.price = product.price * 100 * existingItem.quantity
+        } else {
+          alert('5 is the maximum!')
+        }
+      } else {
+        cartCopy.push({
+          productId: product.id,
+          quantity: quantity,
+          price: product.price * 100,
+          imageUrl: product.imageUrl,
+          productName: product.productName,
+          unitPrice: product.price
+        })
+      }
+
+      setCart(cartCopy)
+      let stringCart = JSON.stringify(cartCopy)
+      localStorage.setItem('cart', stringCart)
+    }
   }
 
   let classes = useStyles()

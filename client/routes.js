@@ -36,13 +36,13 @@ class Routes extends Component {
         <Route path="/experiences" component={AllProducts} />
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id" component={singleProduct} />
-        <Route path="/cart/:userId" component={Cart} />
+        <Route path="/cart" component={Cart} />
         <Route path="/createExperience" component={CreateExperience} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route exact path="/cart/:userId" component={Cart} />
+            <Route exact path="/cart" component={Cart} />
             <Route exact path="/checkout" component={Checkout} />
             <Route path="/admin" component={adminPage} />
           </Switch>

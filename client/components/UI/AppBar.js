@@ -262,9 +262,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                 <IconButton
                   aria-label="show cart"
                   color="inherit"
-                  onClick={() =>
-                    location.reload(history.push(`/cart/${currentUser.id}`))
-                  }
+                  onClick={() => location.reload(history.push(`/cart`))}
                 >
                   <Badge
                     badgeContent={currentUserCart.length}
@@ -322,6 +320,16 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                   color="inherit"
                 >
                   <Typography>Signup</Typography>
+                </IconButton>
+
+                <IconButton
+                  onClick={() => {
+                    history.push('/cart')
+                  }}
+                  aria-label="cart"
+                  color="inherit"
+                >
+                  <Typography>Cart</Typography>
                 </IconButton>
               </Box>
             </Box>
