@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {
   Table,
@@ -7,12 +7,27 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
+  IconButton,
+  TextField
 } from '@material-ui/core'
-
+import {Link} from 'react-router-dom'
+import {makeStyles} from '@material-ui/core/styles'
+import editPage from './editPage'
 import {fetchAllProducts} from '../../store/allProduct'
+import {deleteProduct, editProduct} from '../../store/editProduct'
+
+const useStyles = makeStyles({
+  icon: {
+    display: 'flex',
+    width: '50px',
+    height: '20px',
+    fontSize: '15px'
+  }
+})
 
 const ProductsAdmin = () => {
+  const classes = useStyles()
   let products = useSelector(state => state.products)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -26,11 +41,10 @@ const ProductsAdmin = () => {
           <TableHead>
             <TableRow>
               <TableCell>Experiences</TableCell>
-              <TableCell align="right">instructor</TableCell>
-              <TableCell align="right">price</TableCell>
-              <TableCell align="right">description</TableCell>
-              <TableCell align="right">Edit</TableCell>
-              <TableCell align="right">Delete</TableCell>
+              <TableCell align="right">Instructor</TableCell>
+              <TableCell align="right">Price</TableCell>
+              <TableCell align="right">Description</TableCell>
+              <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -45,6 +59,22 @@ const ProductsAdmin = () => {
                 <TableCell align="right">{row.instructor}</TableCell>
                 <TableCell align="right">{row.price}</TableCell>
                 <TableCell align="right">{row.description}</TableCell>
+                <TableCell>
+                  <Link to={`/admin/products/${row.id}`} key={row.id}>
+                    <IconButton
+                      className={classes.icon}
+                      onClick={() => editProduct(row.id)}
+                    >
+                      Edit
+                    </IconButton>
+                  </Link>
+                  <IconButton
+                    className={classes.icon}
+                    onClick={deleteProduct(row.id)}
+                  >
+                    Delete
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

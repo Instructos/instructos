@@ -95,3 +95,7 @@ img {
   display: flex;
   justify-items: right;
 }
+
+.buttonAdminProducts {
+  font-size: 10px;
+}

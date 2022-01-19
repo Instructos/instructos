@@ -6,7 +6,7 @@ import {
   makeStyles
 } from '@material-ui/core/styles'
 import ProductsAdmin from './productsAdmin'
-import {Button} from '@material-ui/core'
+
 const theme = createTheme({
   typography: {
     fontFamily: ['Montserrat', 'sans serif'].join(',')
