@@ -108,6 +108,21 @@ function MenuAppBar({handleClick, isLoggedIn, isAdmin}) {
 
   let currentUserCart = useSelector(state => state.userCart)
 
+  let totalCartQuantity = currentUserCart
+    .map(cartItem => {
+      return cartItem.quantity
+    })
+    .reduce((totalQuantity, itemQuantity) => {
+      return (totalQuantity += itemQuantity)
+    }, 0)
+  console.log(totalCartQuantity)
+
+  // useEffect(() => {
+  //   if (id) {
+  //     dispatch(getUserCart())
+  //   }
+  // }, [])
+
   useEffect(() => {
     dispatch(getUserCart())
   }, [])
