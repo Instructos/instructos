@@ -108,8 +108,6 @@ function MenuAppBar({handleClick, isLoggedIn}) {
 
   let currentUserCart = useSelector(state => state.userCart)
 
-  console.log(currentUserCart)
-
   let totalCartQuantity = currentUserCart
     .map(cartItem => {
       return cartItem.quantity
