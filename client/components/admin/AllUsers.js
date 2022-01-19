@@ -59,6 +59,16 @@ class AllUsers extends Component {
                           <Typography>User</Typography>
                         )}
                       </TableCell>
+                      <TableCell>
+                        <Button variant="outlined" color="primary">
+                          Edit
+                        </Button>
+                      </TableCell>
+                      <TableCell>
+                        <Button variant="outlined" color="secondary">
+                          Delete
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   )
                 })}
@@ -73,9 +83,7 @@ class AllUsers extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    isAdmin: (userId, adminStatus) => dispatch(isAdmin(userId, adminStatus)),
-    deleteUser: userId => dispatch(deleteUser(userId)),
-    passwordReset: userId => dispatch(passwordReset(userId, true))
+    isAdmin: (userId, adminStatus) => dispatch(isAdmin(userId, adminStatus))
   }
 }
 
