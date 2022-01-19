@@ -108,10 +108,25 @@ function MenuAppBar({handleClick, isLoggedIn}) {
 
   let currentUserCart = useSelector(state => state.userCart)
 
+  console.log(currentUserCart)
+
+  let totalCartQuantity = currentUserCart
+    .map(cartItem => {
+      return cartItem.quantity
+    })
+    .reduce((totalQuantity, itemQuantity) => {
+      return (totalQuantity += itemQuantity)
+    }, 0)
+  console.log(totalCartQuantity)
+
+  // useEffect(() => {
+  //   if (id) {
+  //     dispatch(getUserCart())
+  //   }
+  // }, [])
+
   useEffect(() => {
-    if (id) {
-      dispatch(getUserCart())
-    }
+    dispatch(getUserCart())
   }, [])
 
   const handleProfileMenuOpen = event => {
@@ -268,10 +283,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                   userId={id}
                   onClick={() => location.reload(history.push(`/cart`))}
                 >
-                  <Badge
-                    badgeContent={currentUserCart.length}
-                    color="secondary"
-                  >
+                  <Badge badgeContent={totalCartQuantity} color="secondary">
                     {/* <NotificationsIcon /> */}
                     <Typography>My Cart</Typography>
                   </Badge>
