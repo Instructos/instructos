@@ -26,6 +26,7 @@ const GuestCart = props => {
 
   const [cart, setCart] = useState([])
   let localCart = localStorage.getItem('cart')
+
   useEffect(() => {
     localCart = JSON.parse(localCart)
     if (localCart) setCart(localCart)
@@ -33,9 +34,7 @@ const GuestCart = props => {
 
   const handleUpdateQuantity = (productId, quantity, price) => {
     let cartCopy = [...cart]
-
     let existingItem = cartCopy.find(item => item.productId === productId)
-
     existingItem.quantity = quantity
     existingItem.price = existingItem.unitPrice * 100 * existingItem.quantity
 

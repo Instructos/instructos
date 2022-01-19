@@ -86,7 +86,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function MenuAppBar({handleClick, isLoggedIn}) {
+function MenuAppBar({handleClick, isLoggedIn, isAdmin}) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
@@ -107,6 +107,21 @@ function MenuAppBar({handleClick, isLoggedIn}) {
   const id = currentUser.id
 
   let currentUserCart = useSelector(state => state.userCart)
+
+  let totalCartQuantity = currentUserCart
+    .map(cartItem => {
+      return cartItem.quantity
+    })
+    .reduce((totalQuantity, itemQuantity) => {
+      return (totalQuantity += itemQuantity)
+    }, 0)
+  console.log(totalCartQuantity)
+
+  // useEffect(() => {
+  //   if (id) {
+  //     dispatch(getUserCart())
+  //   }
+  // }, [])
 
   useEffect(() => {
     dispatch(getUserCart())
@@ -250,13 +265,21 @@ function MenuAppBar({handleClick, isLoggedIn}) {
           {isLoggedIn ? (
             <div>
               <div className={classes.sectionDesktop}>
+                {isAdmin && (
+                  <IconButton
+                    onClick={() => history.push('/admin')}
+                    aria-label="admin portal"
+                    color="inherit"
+                  >
+                    <Typography>Admin Portal</Typography>
+                  </IconButton>
+                )}
                 <IconButton
                   onClick={() => history.push('/orders')}
                   aria-label="show orders"
                   color="inherit"
                 >
                   <Badge badgeContent={4} color="secondary">
-                    {/* <MailIcon /> */}
                     <Typography>Order History</Typography>
                   </Badge>
                 </IconButton>
@@ -270,7 +293,6 @@ function MenuAppBar({handleClick, isLoggedIn}) {
                     badgeContent={currentUserCart.length}
                     color="secondary"
                   >
-                    {/* <NotificationsIcon /> */}
                     <Typography>My Cart</Typography>
                   </Badge>
                 </IconButton>
@@ -347,7 +369,8 @@ function MenuAppBar({handleClick, isLoggedIn}) {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.isAdmin
   }
 }
 
@@ -366,5 +389,6 @@ export default connect(mapState, mapDispatch)(MenuAppBar)
  */
 MenuAppBar.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired
 }
