@@ -12,6 +12,7 @@ import {
   CreateExperience,
   adminPage
 } from './components'
+import Users from './components/Admin/Users'
 import {me} from './store'
 import AllUsers from './components/admin/AllUsers'
 import {useDispatch, useSelector} from 'react-redux'

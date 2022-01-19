@@ -58,9 +58,9 @@ export const logout = () => async dispatch => {
   }
 }
 
-export const isAdmin = (userId, toggAdmin) => async dispatch => {
+export const isAdmin = (userId, adminStatus) => async dispatch => {
   try {
-    await axios.put(`/api/users/${userId}`, {toggAdmin})
+    await axios.put(`/api/users/${userId}`, {adminStatus})
     //  history.push('/userManagement')
   } catch (err) {
     console.error(err)
