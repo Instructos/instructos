@@ -109,9 +109,7 @@ function MenuAppBar({handleClick, isLoggedIn}) {
   let currentUserCart = useSelector(state => state.userCart)
 
   useEffect(() => {
-    if (id) {
-      dispatch(getUserCart())
-    }
+    dispatch(getUserCart())
   }, [])
 
   const handleProfileMenuOpen = event => {
