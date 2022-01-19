@@ -5,24 +5,42 @@ const {reset} = require('nodemon')
 
 //   /api/orders GET ALL ORDERS & ASSOCIATED USER/ORDER ITEMS
 
-router.get('/:id', async (req, res, next) => {
+const getCart = async id => {
+  const orderItems = await Order.findAll({
+    where: {
+      userId: id,
+      isPurchased: false
+    },
+    include: [{model: OrderItem}]
+  })
+  return orderItems
+}
+
+router.get('/', async (req, res, next) => {
   try {
-    const orderItems = await Order.findAll({
-      where: {
-        userId: req.params.id,
-        isPurchased: false
-      },
-      include: [
-        {
-          model: OrderItem
-        }
-      ]
-    })
-    res.json(orderItems)
+    const cartItems = await getCart(req.user.id)
+    res.status(201).json(cartItems)
   } catch (error) {
     next(error)
   }
 })
+
+// router.get('/:id', async (req, res, next) => {
+//   try {
+//     const orderItems = await Order.findAll({
+//       where: {
+//         userId: req.params.id,
+//         isPurchased: false
+//       },
+//       include: [
+//         {model: OrderItem}
+//       ]
+//     })
+//     res.json(orderItems)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 //BIG ROUTE
 router.post('/', async (req, res, next) => {
