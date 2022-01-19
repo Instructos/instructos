@@ -6,164 +6,114 @@ const {Product} = require('../server/db/models')
 
 const products = [
   {
-    id: 1,
-    productName: 'Pepper - Red Thai',
-    instructor: 'Cyndy',
-    description: 'Occupant (driver) of pk-up/van injured in unsp nontraf',
-    price: 63.61,
-    imageUrl: 'http://dummyimage.com/238x100.png/5fa2dd/ffffff'
+    productName: 'EDM Dance Party',
+    instructor: 'Eric',
+    description:
+      "Socially-distance-dance the night way with Fullstack's resident techno DJ!",
+    price: 50,
+    imageUrl: 'https://www.lafilm.edu/wp-content/uploads/2017/08/Dance-Show.jpg'
   },
   {
-    id: 2,
-    productName: 'Tuna - Salad Premix',
-    instructor: 'Jenny',
-    description: 'Unsp injury of unsp blood vessel at shldr/up arm, right arm',
-    price: 78.59,
-    imageUrl: 'http://dummyimage.com/217x100.png/ff4444/ffffff'
+    productName: 'Nicki Minaj Listening Session',
+    instructor: 'Amber',
+    description:
+      'Spend sometime enjoying the skillful flow of the beautiful and talented Ms. Nicki Minaj!',
+    price: 50,
+    imageUrl:
+      'http://vh1.mtvnimages.com/uri/mgid:ao:image:mtv:647533?quality=0.8&format=jpg&width=1440&height=810&.jpg'
   },
   {
-    id: 3,
-    productName: 'Pepper - Sorrano',
-    instructor: 'Tobey',
-    description: 'Stenosis of larynx',
-    price: 32.96,
-    imageUrl: 'http://dummyimage.com/130x100.png/ff4444/ffffff'
+    productName: 'Totems of New York Photo Walk',
+    instructor: 'Devonne',
+    description:
+      'Take a stroll to visually capture the essence of New York, including unexpectedly closed subway stations and cars double-parking you in!',
+    price: 50,
+    imageUrl:
+      'https://media.nbcnewyork.com/2020/10/4987478283-1080pnbcstations.jpg?quality=85&strip=all&resize=1200%2C675'
   },
   {
-    id: 4,
-    productName: 'Cheese - Ermite Bleu',
-    instructor: 'Cornie',
-    description: 'Chronic Eustachian salpingitis',
-    price: 21.6,
-    imageUrl: 'http://dummyimage.com/156x100.png/5fa2dd/ffffff'
+    productName: 'Studio Ghibli & Popcorn',
+    instructor: 'Mac',
+    description:
+      'Studio Ghibli and socially-distance chill with Instructor Mac!',
+    price: 50,
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo6c_5hWbXORUqfRgX-CuhADlM7FAfCAtsrC6UZ2MS2qtwrLw4hviFA1AkJj30Y1IY0t0&usqp=CAU'
   },
   {
-    id: 5,
-    productName: 'Soup - Verve - Chipotle Chicken',
-    instructor: 'Ryann',
-    description: 'Diab due to undrl cond w diabetic prph angiopath w gangrene',
-    price: 78.6,
-    imageUrl: 'http://dummyimage.com/125x100.png/ff4444/ffffff'
+    productName: 'An Awkward Encouter',
+    instructor: 'Zach',
+    description: '...so umm, yeah. Weather?',
+    price: 50,
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY71MclVp2zr6OjnxwjkuqtnM0mY1q4RTjDw&usqp=CAU'
+  },
+
+  {
+    productName: 'Coffee Time',
+    instructor: 'Margarita',
+    description: 'An elegant way to spend time!',
+    price: 30,
+    imageUrl:
+      'https://www.cancer.org/content/dam/cancer-org/images/photographs/single-use/espresso-coffee-cup-with-beans-on-table-restricted.jpg'
   },
   {
-    id: 6,
-    productName: 'Cookie - Dough Variety',
-    instructor: 'Maryanna',
-    description: 'Unsp injury of ulnar artery at wrs/hnd lv of left arm, init',
-    price: 81.68,
-    imageUrl: 'http://dummyimage.com/111x100.png/5fa2dd/ffffff'
+    productName: 'Fun Fun Coding',
+    instructor: 'Sey',
+    description: 'Learning Javascript the fun way',
+    price: 40,
+    imageUrl:
+      'https://www.computersciencedegreehub.com/wp-content/uploads/2016/02/what-is-coding-1024x683.jpg'
   },
   {
-    id: 7,
-    productName: 'Ocean Spray - Kiwi Strawberry',
-    instructor: 'Aleda',
-    description: 'Peripheral vasodilators',
-    price: 56.76,
-    imageUrl: 'http://dummyimage.com/199x100.png/dddddd/000000'
+    productName: 'New York City tour',
+    instructor: 'Eric',
+    description: 'Touring with the best',
+    price: 100,
+    imageUrl: 'https://i.ytimg.com/vi/TdM6ri0kIG4/maxresdefault.jpg'
   },
   {
-    id: 8,
-    productName: 'Wine - Pinot Noir Latour',
-    instructor: 'Rufus',
-    description: 'Poisoning by therapeutic gases, accidental (unintentional)',
-    price: 5.87,
-    imageUrl: 'http://dummyimage.com/103x100.png/dddddd/000000'
+    productName: 'Going to the best New York Restaurants',
+    instructor: 'Devonne',
+    description: 'Having great food with Devonne',
+    price: 250,
+    imageUrl:
+      'https://cdn.vox-cdn.com/thumbor/gP2kgYtNHMHccU2qo5JUhLai5pk=/0x0:4500x3000/1200x900/filters:focal(1890x1140:2610x1860)/cdn.vox-cdn.com/uploads/chorus_image/image/58970287/20180604_GH_LAMERCERIE_1016.6.jpg'
   },
   {
-    id: 9,
-    productName: 'Crackers - Melba Toast',
-    instructor: 'Clovis',
-    description: 'Resistance to other specified beta lactam antibiotics',
-    price: 40.36,
-    imageUrl: 'http://dummyimage.com/206x100.png/cc0000/ffffff'
+    productName: 'Attend a Comedy show in NYC',
+    instructor: 'Savion',
+    description:
+      'Best comedy shows in the world! This show requires valid license and COVID vaccination card',
+    price: 300,
+    imageUrl:
+      'https://p300-americantownscom.netdna-ssl.com/img/article/ny-comedy-clubs-1.jpg'
   },
   {
-    id: 10,
-    productName: 'Grapes - Green',
-    instructor: 'Lise',
-    description: 'Gastric contents in bronchus causing asphyxiation, subs',
-    price: 73.06,
-    imageUrl: 'http://dummyimage.com/113x100.png/ff4444/ffffff'
+    productName: 'Slaying the mightiest Dragons',
+    instructor: 'Mac',
+    description: 'Fight the dangerous dragons with the fearless Mac',
+    price: 100,
+    imageUrl:
+      'https://imgix.kotaku.com.au/content/uploads/sites/3/2020/06/dungeons-and-dragons-learn.jpg?ar=16%3A9&auto=format&fit=crop&q=65&w=1280'
   },
   {
-    id: 11,
-    productName: 'Beef Ground Medium',
-    instructor: 'Gav',
-    description: 'Poisoning by opium, undetermined',
-    price: 6.43,
-    imageUrl: 'http://dummyimage.com/131x100.png/5fa2dd/ffffff'
+    productName: 'Chicago Deep dish Pizza',
+    instructor: 'Zach',
+    description:
+      'Having the famous Chicago Deep dish Pizza. If you can finish one whole pie, Zach buys!',
+    price: 200,
+    imageUrl:
+      'https://www.savingdessert.com/wp-content/uploads/2018/03/Chicago-Style-Deep-Dish-Pizza-5.jpg'
   },
   {
-    id: 12,
-    productName: 'Beef - Bones, Cut - Up',
-    instructor: 'Sianna',
-    description: 'Major laceration of right internal jugular vein, init encntr',
-    price: 82.45,
-    imageUrl: 'http://dummyimage.com/113x100.png/5fa2dd/ffffff'
-  },
-  {
-    id: 13,
-    productName: 'Squid - Tubes / Tenticles 10/20',
-    instructor: 'Celestyn',
-    description: 'Fall same lev from slip/trip w strk agnst sharp glass, init',
-    price: 39.09,
-    imageUrl: 'http://dummyimage.com/107x100.png/5fa2dd/ffffff'
-  },
-  {
-    id: 14,
-    productName: 'Ice Cream Bar - Hagen Daz',
-    instructor: 'Dede',
-    description: 'Disp fx of shaft of fifth metacarpal bone, left hand, init',
-    price: 42.34,
-    imageUrl: 'http://dummyimage.com/146x100.png/5fa2dd/ffffff'
-  },
-  {
-    id: 15,
-    productName: 'Mushrooms - Honey',
-    instructor: 'Adena',
-    description: 'Poisoning by ganglionic blocking drugs, undetermined, init',
-    price: 62.48,
-    imageUrl: 'http://dummyimage.com/111x100.png/ff4444/ffffff'
-  },
-  {
-    id: 16,
-    productName: 'Chevril',
-    instructor: 'Vivian',
-    description: 'Postprocedural stenosis of left external ear canal',
-    price: 48.5,
-    imageUrl: 'http://dummyimage.com/243x100.png/dddddd/000000'
-  },
-  {
-    id: 17,
-    productName: 'Bag - Clear 7 Lb',
-    instructor: 'Courtney',
-    description: 'Athscl type of bypass of the right leg w ulceration of calf',
-    price: 47.04,
-    imageUrl: 'http://dummyimage.com/249x100.png/cc0000/ffffff'
-  },
-  {
-    id: 18,
-    productName: 'Buttons',
-    instructor: 'Claus',
-    description: 'Disp fx of posterior wall of right acetabulum, sequela',
-    price: 29.67,
-    imageUrl: 'http://dummyimage.com/140x100.png/5fa2dd/ffffff'
-  },
-  {
-    id: 19,
-    productName: 'Energy Drink - Redbull 355ml',
-    instructor: 'Zoe',
-    description: 'Crushing injury of head, part unspecified, subs encntr',
-    price: 56.58,
-    imageUrl: 'http://dummyimage.com/183x100.png/dddddd/000000'
-  },
-  {
-    id: 20,
-    productName: 'Tomatoes - Yellow Hot House',
-    instructor: 'Melita',
-    description: 'Malignant neoplasm of short bones of right upper limb',
-    price: 27.88,
-    imageUrl: 'http://dummyimage.com/114x100.png/ff4444/ffffff'
+    productName: '1 vs 1 Quidditch match',
+    instructor: 'Eric',
+    description:
+      'Quidditch is a fictional sport invented by author J.K. Rowling for her fantasy book series Harry Potter. It is a dangerous but popular sport played by witches and wizards riding flying broomsticks. ',
+    price: 300,
+    imageUrl:
+      'https://alcalde.texasexes.org/wp-content/uploads/2013/06/quidditch2.jpg'
   }
 ]
 
@@ -172,8 +122,8 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({email: 'cody@email.com', password: '123', isAdmin: true}),
+    User.create({email: 'murphy@email.com', password: '123', isAdmin: false})
   ])
   await Promise.all(
     products.map(product => {

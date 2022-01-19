@@ -3,24 +3,22 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useParams} from 'react-router-dom/cjs/react-router-dom.min'
 import {singleProduct} from '../store/singleProduct'
 import {addOrder} from '../store/orders'
-import user, {me} from '../store/user'
+import {me} from '../store/user'
 
 import {
   Box,
   Grid,
-  Card,
-  CardActions,
-  CardContent,
   Button,
+  Popover,
   Typography,
   Container
 } from '@material-ui/core'
+
 import {
   createTheme,
   MuiThemeProvider,
   makeStyles
 } from '@material-ui/core/styles'
-// import {textAlign} from '@material-ui/system'
 
 const theme = createTheme({
   typography: {
@@ -64,38 +62,69 @@ const useStyles = makeStyles({
 })
 
 const SingleProduct = () => {
-  let product = useSelector(state => state.product)
   const dispatch = useDispatch()
   const {id} = useParams()
+
+  let product = useSelector(state => state.product)
 
   useEffect(() => {
     dispatch(singleProduct(id))
   }, [])
 
-  //NEW CODE:
-  //have access to currentUser, product, and quantity
   let currentUser = useSelector(state => state.user)
+
   useEffect(() => {
     dispatch(me())
   }, [])
 
   const [quantity, setQuantity] = useState(1)
 
+  const [cart, setCart] = useState([])
+  let localCart = localStorage.getItem('cart')
+  useEffect(() => {
+    localCart = JSON.parse(localCart)
+    if (localCart) setCart(localCart)
+  }, [])
+
   function handleClick(event) {
     event.preventDefault()
-    //console.log('Clicked!')
-    //setQuantity(quantity+1)
 
-    //add the order
-    //NOTE SEED DATA IS NOT INTEGER TYPE
-    dispatch(
-      addOrder({
-        productId: product.id,
-        userId: currentUser.id,
-        quantity: quantity,
-        price: 5000
-      })
-    )
+    if (currentUser.id) {
+      dispatch(
+        addOrder({
+          productId: product.id,
+          userId: currentUser.id,
+          quantity: quantity,
+          price: product.price * 100
+        })
+      )
+    } else {
+      let cartCopy = [...cart]
+      let productId = product.id
+      let existingItem = cartCopy.find(item => item.productId === productId)
+
+      if (existingItem) {
+        if (existingItem.quantity < 5) {
+          existingItem.quantity += 1
+          existingItem.price = product.price * 100 * existingItem.quantity
+        } else {
+          alert('5 is the maximum!')
+        }
+      } else {
+        cartCopy.push({
+          productId: product.id,
+          quantity: quantity,
+          price: product.price * 100,
+          imageUrl: product.imageUrl,
+          productName: product.productName,
+          unitPrice: product.price
+        })
+      }
+
+      setCart(cartCopy)
+      let stringCart = JSON.stringify(cartCopy)
+      localStorage.setItem('cart', stringCart)
+    }
   }
 
   let classes = useStyles()
@@ -113,7 +142,7 @@ const SingleProduct = () => {
         <Typography
           component="div"
           color="primary"
-          gutterBottom
+          gutter-bottom="true"
           className={classes.productName}
         >
           {product.productName}
@@ -121,7 +150,7 @@ const SingleProduct = () => {
         <Typography
           variant="h4"
           color="secondary"
-          gutterBottom
+          gutter-bottom="true"
           className={classes.instructor}
         >
           <span className="single-view-span">with</span> {product.instructor}
@@ -130,7 +159,7 @@ const SingleProduct = () => {
       <Typography
         className={classes.description}
         color="secondary"
-        gutterBottom
+        gutter-bottom="true"
       >
         {product.description}
       </Typography>
@@ -139,7 +168,7 @@ const SingleProduct = () => {
         <Button
           variant="contained"
           color="primary"
-          gutterBottom
+          gutter-bottom="true"
           className="single-view-button"
           style={{marginLeft: '30px'}}
           onClick={handleClick}

@@ -10,10 +10,10 @@ export const _getUserCart = orderItems => {
   }
 }
 
-export const getUserCart = id => {
+export const getUserCart = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/orders/${id}`)
+      const {data} = await axios.get(`/api/orders/`)
       dispatch(_getUserCart(data[0].orderItems))
     } catch (error) {
       console.log(error)

@@ -1,26 +1,46 @@
 const router = require('express').Router()
 const {User, Order, OrderItem} = require('../db/models')
+const {Op} = require('sequelize')
+const {reset} = require('nodemon')
 
 //   /api/orders GET ALL ORDERS & ASSOCIATED USER/ORDER ITEMS
 
-router.get('/:id', async (req, res, next) => {
+const getCart = async id => {
+  const orderItems = await Order.findAll({
+    where: {
+      userId: id,
+      isPurchased: false
+    },
+    include: [{model: OrderItem}]
+  })
+  return orderItems
+}
+
+router.get('/', async (req, res, next) => {
   try {
-    const orderItems = await Order.findAll({
-      where: {
-        userId: req.params.id,
-        isPurchased: false
-      },
-      include: [
-        {
-          model: OrderItem
-        }
-      ]
-    })
-    res.json(orderItems)
+    const cartItems = await getCart(req.user.id)
+    res.status(201).json(cartItems)
   } catch (error) {
     next(error)
   }
 })
+
+// router.get('/:id', async (req, res, next) => {
+//   try {
+//     const orderItems = await Order.findAll({
+//       where: {
+//         userId: req.params.id,
+//         isPurchased: false
+//       },
+//       include: [
+//         {model: OrderItem}
+//       ]
+//     })
+//     res.json(orderItems)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 //BIG ROUTE
 router.post('/', async (req, res, next) => {
@@ -78,36 +98,53 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/', async (req, res, next) => {
+router.delete('/:orderId', async (req, res, next) => {
   try {
-    const deletedItem = await OrderItem.destroy({
+    await OrderItem.destroy({
       where: {
-        orderId: req.body.orderId,
-        productId: req.body.productId
+        id: req.params.orderId
       }
     })
-    res.send('deleted')
+    // const orderToDelete = await OrderItem.findByPk(req.params.orderId);
+    // await orderToDelete.destroy();
+    // res.send(orderToDelete)
+    res.send(204)
   } catch (error) {
     next(error)
   }
 })
 
-router.put('/', async (req, res, next) => {
+//update cart
+router.put('/:orderItemId', async (req, res, next) => {
   try {
-    const updateItem = await OrderItem.findOne({
-      where: {
-        orderId: req.body.orderId,
-        productId: req.body.productId
-      }
+    const orderToUpdate = await OrderItem.findByPk(req.params.orderItemId)
+    const updatedQuantity = req.body.quantity
+    const updatedPrice = req.body.price
+    await orderToUpdate.update({
+      quantity: updatedQuantity,
+      price: updatedPrice
     })
 
-    if (updateItem) {
-      await updateItem.update({
-        quantity: req.body.quantity
-      })
-    } else {
-      res.send('No order item with these parameters')
-    }
+    res.send(orderToUpdate)
+  } catch (error) {
+    next(error)
+  }
+})
+
+//checkout cart
+router.put('/', async (req, res, next) => {
+  try {
+    await Order.update(
+      {
+        isPurchased: true
+      },
+      {
+        where: {
+          id: req.body.orderId
+        }
+      }
+    )
+    res.send('Order completed')
 
     res.send(204)
   } catch (error) {

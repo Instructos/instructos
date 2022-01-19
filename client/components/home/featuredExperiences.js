@@ -20,7 +20,7 @@ const Home = props => {
   const products = props.products
 
   const shuffled = products.sort(() => 0.5 - Math.random())
-  let selected = shuffled.slice(0, 5)
+  let selected = shuffled.slice(0, 7)
 
   return (
     <div>

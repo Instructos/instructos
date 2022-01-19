@@ -22,15 +22,28 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const order = await Product.findByPk(req.params.id, {
-      include: [Order, OrderItem]
-    })
-    res.send(await student.update(req.body))
+    const product = await Product.create(req.body)
+    res.send(product)
   } catch (error) {
     next(error)
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id
+    await Product.destroy({
+      where: {
+        id: id
+      }
+    })
+    res.send(`Product id of "${id}" has been deleted`)
+    const product = await Product.create(req.body)
+    res.send(product)
+  } catch (error) {
+    next(error)
+  }
+})
 module.exports = router
