@@ -95,11 +95,12 @@ const useStyles = makeStyles({
     letterSpacing: '2px',
     color: 'white',
     marginTop: '20px',
-    marginBottom: '5px'
+    marginbottom: '5px'
   },
 
   testimonialContainer: {
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    paddingTop: '40px'
   },
 
   introContainer: {
@@ -108,7 +109,7 @@ const useStyles = makeStyles({
 
   introBox: {
     margin: '0 auto',
-    padding: '10px',
+    padding: '40px',
     borderRadius: '10px',
     width: '500px',
     alignText: 'center',
@@ -122,7 +123,7 @@ const useStyles = makeStyles({
     letterSpacing: '5px'
   },
   introText: {
-    marginBottom: '5px',
+    marginbottom: '5px',
     marginTop: '1px'
   }
 })
@@ -152,7 +153,7 @@ const Home = () => {
     <MuiThemeProvider theme={theme}>
       <Introduction classes={classes} />
       <FeaturedExperiences products={products} classes={classes} />
-      <FeaturedInstructors products={products} classes={classes} />
+      {/* <FeaturedInstructors products={products} classes={classes} /> */}
       <Testimonials classes={classes} />
     </MuiThemeProvider>
   )

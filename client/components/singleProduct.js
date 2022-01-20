@@ -159,7 +159,8 @@ const SingleProduct = () => {
           price: product.price * 100,
           imageUrl: product.imageUrl,
           productName: product.productName,
-          unitPrice: product.price
+          unitPrice: product.price,
+          instructor: product.instructor
         })
         setOpen(true)
       }

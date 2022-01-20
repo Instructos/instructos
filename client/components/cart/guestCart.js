@@ -103,13 +103,19 @@ const GuestCart = props => {
               <TableRow key={item.id}>
                 <TableCell>
                   <div className={classes.imageRow}>
-                    {item.productName}
+                    {item.productName}{' '}
+                    <span className={classes.instructor}>
+                      {' '}
+                      with {item.instructor}
+                    </span>
                     <br />
-
                     <img
                       className={classes.img}
                       alt="complex"
                       src={item.imageUrl}
+                      onClick={() =>
+                        history.push(`/products/${item.productId}`)
+                      }
                     />
                   </div>
                 </TableCell>
@@ -150,6 +156,7 @@ const GuestCart = props => {
 
                     <Button
                       onClick={() => handleRemoveFromCart(item.productId)}
+                      className={classes.deleteButton}
                     >
                       Delete
                     </Button>
@@ -174,7 +181,7 @@ const GuestCart = props => {
         </Table>
       </TableContainer>
 
-      <Container maxWidth="sm" marginBottom="5px">
+      <Container maxWidth="sm" marginbottom="5px">
         <Button
           type="submit"
           fullWidth
