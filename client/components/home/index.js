@@ -120,7 +120,8 @@ const useStyles = makeStyles({
     fontFamily: "'Raleway', sans-serif",
     margin: '1px',
     fontSize: '70px',
-    letterSpacing: '5px'
+    letterSpacing: '5px',
+    paddingTop: '20px'
   },
   introText: {
     marginbottom: '5px',

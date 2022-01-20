@@ -303,7 +303,7 @@ const Cart = () => {
         </Table>
       </TableContainer>
 
-      <Container maxWidth="sm" marginBottom="5px">
+      <Container maxWidth="sm" marginbottom="5px">
         <Button
           type="submit"
           fullWidth
