@@ -52,7 +52,7 @@ const theme = createTheme({
 const useStyles = makeStyles({
   productName: {
     paddingTop: 25,
-    whiteSpace: 'nowrap',
+    whiteSpace: 'wrap',
     fontSize: '4vw'
   },
   instructor: {
