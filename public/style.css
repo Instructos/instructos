@@ -63,6 +63,7 @@ img {
   padding: 25px;
   width: 50vw;
   height: 40vw;
+  object-fit: cover;
 }
 
 .single-view-span {
