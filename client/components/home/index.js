@@ -109,7 +109,7 @@ const useStyles = makeStyles({
 
   introBox: {
     margin: '0 auto',
-    padding: '40px',
+    padding: '30px',
     borderRadius: '10px',
     width: '500px',
     alignText: 'center',
@@ -126,6 +126,14 @@ const useStyles = makeStyles({
   introText: {
     marginbottom: '5px',
     marginTop: '1px'
+  },
+  homeImage: {
+    width: '50%',
+    margin: 'auto'
+  },
+  imgContainer: {
+    margin: 'auto',
+    textAlign: 'center'
   }
 })
 

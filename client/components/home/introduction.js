@@ -21,6 +21,9 @@ const Introduction = props => {
         <h1 align="center" className={classes.introTitle}>
           INSTRUCTOS
         </h1>
+        <div className={classes.imgContainer}>
+          <img className={classes.homeImage} src="/img/fullstack.jpg" />
+        </div>
         <h4 align="center" className={classes.introText}>
           Unique experiences with your Fullstack Academy<br /> instructors and
           fellows!
