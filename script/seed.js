@@ -161,7 +161,7 @@ const products = [
     description:
       "Amber knows the best places to get food when you've had one or ten too many. After years of being in a constant state of drunk, Amber has sampled the most delicious morsels from the three block area around her home. Take a tour of the best of the best restaurants that are open at 4:30am. By the time the sun comes up you will have feasted like French nobility, the only difference being no peasants are coming to cut off your head. (Disclaimer: Instructos is not responsible if you upset, anger, or otherwise provoke the French commoners, and will not be held liable if they execute you like it's 1789.)",
     price: 90000,
-    imageUrl: '/img/amber.jpg'
+    imageUrl: '/img/amber.jpeg'
   }
 ]
 
