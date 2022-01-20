@@ -184,7 +184,7 @@ function MenuAppBar({handleClick, isLoggedIn, isAdmin}) {
           color="inherit"
           onClick={() => history.push('/cart')}
         >
-          <Badge badgeContent={currentUserCart.length} color="secondary">
+          <Badge badgeContent={totalCartQuantity} color="secondary">
             {/* <NotificationsIcon /> */}
             <Typography>My Cart</Typography>
           </Badge>
@@ -286,10 +286,7 @@ function MenuAppBar({handleClick, isLoggedIn, isAdmin}) {
                   userId={id}
                   onClick={() => location.reload(history.push(`/cart`))}
                 >
-                  <Badge
-                    badgeContent={currentUserCart.length}
-                    color="secondary"
-                  >
+                  <Badge badgeContent={totalCartQuantity} color="secondary">
                     <Typography>My Cart</Typography>
                   </Badge>
                 </IconButton>
