@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {
   Table,
@@ -7,44 +8,74 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
+  IconButton,
+  Button
 } from '@material-ui/core'
 
+import {makeStyles} from '@material-ui/core/styles'
 import {fetchAllProducts} from '../../store/allProduct'
+import {deleteProduct} from '../../store/editProduct'
+import EditPage from './editPage'
+
+const useStyles = makeStyles({
+  icon: {
+    display: 'flex',
+    width: '50px',
+    height: '20px',
+    fontSize: '15px'
+  },
+  button: {
+    display: 'flex',
+    backgroundColor: 'white',
+    borderColor: 'black'
+  }
+})
 
 const ProductsAdmin = () => {
+  const classes = useStyles()
   let products = useSelector(state => state.products)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [])
-
   return (
     <div>
+      <Link to="/admin/createExperience">
+        <Button className={classes.button}>Add New Experience</Button>
+      </Link>
       <TableContainer component={Paper}>
         <Table sx={{minWidth: 650, maxWidth: '80%'}} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Experiences</TableCell>
-              <TableCell align="right">instructor</TableCell>
-              <TableCell align="right">price</TableCell>
-              <TableCell align="right">description</TableCell>
-              <TableCell align="right">Edit</TableCell>
-              <TableCell align="right">Delete</TableCell>
+              <TableCell align="right">Instructor</TableCell>
+              <TableCell align="right">Price</TableCell>
+              <TableCell align="right">Description</TableCell>
+              <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map(row => (
+            {products.map(product => (
               <TableRow
-                key={row.id}
+                key={product.id}
                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
               >
                 <TableCell component="th" scope="row">
-                  {row.productName}
+                  {product.productName}
                 </TableCell>
-                <TableCell align="right">{row.instructor}</TableCell>
-                <TableCell align="right">{row.price}</TableCell>
-                <TableCell align="right">{row.description}</TableCell>
+                <TableCell align="right">{product.instructor}</TableCell>
+                <TableCell align="right">{product.price}</TableCell>
+                <TableCell align="right">{product.description}</TableCell>
+                <TableCell>
+                  <EditPage product={product} />
+                  <IconButton
+                    className={classes.icon}
+                    onClick={deleteProduct(product.id)}
+                  >
+                    Delete
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

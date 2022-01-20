@@ -95,3 +95,22 @@ img {
   display: flex;
   justify-items: right;
 }
+
+.buttonAdminProducts {
+  font-size: 10px;
+}
+
+.adminWelcome {
+  font-size: 50px;
+  justify-content: center;
+  margin-left: 100px;
+  display: flex;
+}
+
+.fullstackPic {
+  width: 30%;
+  height: 25%;
+  justify-content: center;
+  margin-left: 32%;
+  display: flex;
+}

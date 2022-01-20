@@ -5,8 +5,6 @@ import {
   MuiThemeProvider,
   makeStyles
 } from '@material-ui/core/styles'
-import ProductsAdmin from './productsAdmin'
-import {Button} from '@material-ui/core'
 const theme = createTheme({
   typography: {
     fontFamily: ['Montserrat', 'sans serif'].join(',')
@@ -45,9 +43,16 @@ const adminPage = () => {
     <MuiThemeProvider theme={theme}>
       <div className={classes.Sidebar}>
         <Sidebar />
+        <div className="adminWelcome"> Welcome to the Admin Page</div>
       </div>
-      <div className="adminBody"> Welcome to the Admin Page</div>
-      <ProductsAdmin />
+
+      <div>
+        <img
+          alt="fullstack"
+          className="fullstackPic"
+          src="/img/fullstack.jpg"
+        />
+      </div>
     </MuiThemeProvider>
   )
 }
