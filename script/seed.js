@@ -121,7 +121,7 @@ const products = [
     description:
       "Prepare yourself for a magical afternoon with our resident horse whisperer, Eric. You will meet him at our World Class stables, where he will introduce you to all of the horses. Once you've made your selection Eric will give you a brief walk through on how to sit on a horse properly. When you're ready, Eric will put those rippling biceps to use and pull you up to the saddle. Thats right, you'll be riding tandem, with Eric pecs pressed firmly against your back, and his arms holding you securely in place. No one's falling off on his watch *Winks in French*. (Disclaimer: Instructos is not responsible for any feelings you may develope for Eric.)",
     price: 120000,
-    imageUrl: 'https://imgur.com/ZJAwcbj'
+    imageUrl: '/img/eric.jpeg'
   },
   {
     productName: 'Reenacting Cast Away',
@@ -129,7 +129,7 @@ const products = [
     description:
       "Ever want to be lost on a deserted island with nothing but a volley ball? Love Tom Hanks? Well, then Sey can make all your dreams come true. This Premium Experience puts you in the role of Chuck Noland, originally played by Hollywood Heartthrob Tom Hanks, and Sey as Wilson the Volleyball, originally played by a Volleyball. Over the course of sixteen weeks, you and Sey will take acting lessons where you will learn to truely immitate the Great Tom Hanks playing Chuck Noland, while Sey will learn to be an inanimate volleyball. Then we will fly you, by FedEx cargo plane to maintian total immersion in the role, to the very island the movie was filmed on. You will reenact, scene for scene, the entirety of the film that the Marvelous Tom Hanks was nominated for an Academy Award for Best Actor in a Leading Role. (Disclaimer: Per attorney's representing the magical Tom Hanks, we must make clear that the greatest actor ever Tom Hanks is in no way associtated with Instructos, nor does our Lord and Savior Tom Hanks endorse this Experience.)",
     price: 2500000,
-    imageUrl: 'https://imgur.com/a/L7objFE'
+    imageUrl: '/img/castaway.jpeg'
   },
   {
     productName: 'Corporate Espionage',
@@ -137,7 +137,7 @@ const products = [
     description:
       "Ever want to enter the face paced world of corporate America, but also hate corporate America? Then be ready to team up with Savion, as he takes you under his wing, so the two of you can take down the corporate fat cats. Savion will train you in useful techniques such as, lying, blending in, how to shake a hand, and hiding behind plants. Look out Jeff Bezos, Elon Musk, and definitely not a robot Mark Zuckerberg, if you're reading this, our highly skilled corporate spies are right behind you, and they're ready to eat the rich. (Disclaimer: Instructos does not condone actual cannabalism. Please do not actually eat anyone.)",
     price: 1750000,
-    imageUrl: 'https://imgur.com/3IkN2io'
+    imageUrl: '/img/savion.jpeg'
   },
   {
     productName: 'The Art of Pointing with Your Mouth',
@@ -145,7 +145,7 @@ const products = [
     description:
       "Margarita is a pro at pointing with her mouth, because she knows sometimes you just can't use anything else. She will imbue unto you some of the raw talent she has in the hopes of sculpting you from a sad, weak lipped nobody, into someone who can point with their lips so incredibly well, that whatever god you believe in cries. (Disclaimer: Instructos is not resposible if your god chooses to smite as retribution for making them cry)",
     price: 300000,
-    imageUrl: 'https://imgur.com/l9HVjdE'
+    imageUrl: '/img/margarita.jpeg'
   },
   {
     productName: 'Judging Strangers on the Subway',
@@ -153,7 +153,7 @@ const products = [
     description:
       'People are weird and Devonne has no problem letting them know, and soon neither will you. (Disclaimer: Instructos cannot guarantee that Devonne will not end up judging you, as you are a stranger to him and will in fact be on the subway.)',
     price: 65000,
-    imageUrl: 'https://imgur.com/sb3v5QS'
+    imageUrl: '/img/devonne.jpeg'
   },
   {
     productName: 'Getting Late Night Drunk Food',
@@ -161,7 +161,7 @@ const products = [
     description:
       "Amber knows the best places to get food when you've had one or ten too many. After years of being in a constant state of drunk, Amber has sampled the most delicious morsels from the three block area around her home. Take a tour of the best of the best restaurants that are open at 4:30am. By the time the sun comes up you will have feasted like French nobility, the only difference being no peasants are coming to cut off your head. (Disclaimer: Instructos is not responsible if you upset, anger, or otherwise provoke the French commoners, and will not be held liable if they execute you like it's 1789.)",
     price: 90000,
-    imageUrl: 'https://imgur.com/rWFaVs1'
+    imageUrl: '/img/amber.jpeg'
   }
 ]
 
