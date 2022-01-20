@@ -23,7 +23,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', adminAuth, async (req, res, next) => {
   try {
     let product = await Product.create(req.body)
     res.json(product)
@@ -32,7 +32,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', adminAuth, async (req, res, next) => {
   try {
     const productToUpdate = await Product.findByPk(req.params.id)
     res.send(await productToUpdate.update(req.body))
@@ -41,7 +41,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', adminAuth, async (req, res, next) => {
   try {
     const productToDelete = await Product.findByPk(req.params.id)
     res.send(productToDelete.destroy(req.body))
