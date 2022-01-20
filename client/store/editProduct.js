@@ -30,10 +30,10 @@ export const deleteProduct = id => {
   }
 }
 
-export const editProduct = (id, product) => {
+export const editProduct = product => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/products/${id}`, product)
+      const {data} = await axios.put(`/api/products/${product.id}`, product)
       dispatch(_editProduct(data))
     } catch (error) {
       console.log(error)
@@ -41,12 +41,12 @@ export const editProduct = (id, product) => {
   }
 }
 
-export default function editProductReducer(state = [], action) {
+export default function editProductReducer(state = {}, action) {
   switch (action.type) {
     case EDIT_PRODUCT:
-      return [...state, action.product]
+      return action.product
     case DELETE_PRODUCT:
-      return state.filter(product => product.id !== action.product.id)
+      return action.product
     default:
       return state
   }

@@ -12,7 +12,7 @@ import {
   CreateExperience,
   adminPage,
   ProductsAdmin,
-  editPage
+  EditPage
 } from './components'
 import Users from './components/Admin/Users'
 import {me} from './store'
@@ -36,8 +36,6 @@ const Routes = () => {
       <Route exact path="/admin" component={adminPage} />
       <Route exact path="/admin/products" component={ProductsAdmin} />
       <Route path="/admin/createExperience" component={CreateExperience} />
-      <Route exact path="/admin/products/:id" component={editPage} />
-      <Route exact path="/admin/editProduct" component={editPage} />
     </Switch>
   )
   return (

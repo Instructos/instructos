@@ -5,7 +5,6 @@ import {
   MuiThemeProvider,
   makeStyles
 } from '@material-ui/core/styles'
-import ProductsAdmin from './productsAdmin'
 
 const theme = createTheme({
   typography: {
