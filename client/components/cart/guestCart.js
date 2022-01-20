@@ -45,11 +45,15 @@ const GuestCart = props => {
 
   const handleRemoveFromCart = productId => {
     let cartCopy = [...cart]
-
-    let newCart = cartCopy.filter(item => item.productId !== productId)
-    setCart(newCart)
-    let stringCart = JSON.stringify(cartCopy)
-    localStorage.setItem('cart', stringCart)
+    if (cartCopy.length === 1) {
+      setCart([])
+      localStorage.removeItem('cart')
+    } else {
+      let newCart = cartCopy.filter(item => item.productId !== productId)
+      setCart(newCart)
+      let stringCart = JSON.stringify(cartCopy)
+      localStorage.setItem('cart', stringCart)
+    }
   }
 
   const handleCheckout = () => {
