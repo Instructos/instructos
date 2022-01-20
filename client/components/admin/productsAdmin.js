@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {
   Table,
@@ -8,12 +9,13 @@ import {
   TableHead,
   TableRow,
   Paper,
-  IconButton
+  IconButton,
+  Button
 } from '@material-ui/core'
 
 import {makeStyles} from '@material-ui/core/styles'
 import {fetchAllProducts} from '../../store/allProduct'
-import {deleteProduct, editProduct} from '../../store/editProduct'
+import {deleteProduct} from '../../store/editProduct'
 import EditPage from './editPage'
 
 const useStyles = makeStyles({
@@ -22,6 +24,11 @@ const useStyles = makeStyles({
     width: '50px',
     height: '20px',
     fontSize: '15px'
+  },
+  button: {
+    display: 'flex',
+    backgroundColor: 'white',
+    borderColor: 'black'
   }
 })
 
@@ -34,6 +41,9 @@ const ProductsAdmin = () => {
   }, [])
   return (
     <div>
+      <Link to="/admin/createExperience">
+        <Button className={classes.button}>Add New Experience</Button>
+      </Link>
       <TableContainer component={Paper}>
         <Table sx={{minWidth: 650, maxWidth: '80%'}} aria-label="simple table">
           <TableHead>
