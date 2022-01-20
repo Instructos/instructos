@@ -108,9 +108,9 @@ img {
 }
 
 .fullstackPic {
-  width: 20%;
-  height: 20%;
+  width: 30%;
+  height: 25%;
   justify-content: center;
-  margin-left: 43%;
+  margin-left: 32%;
   display: flex;
 }
