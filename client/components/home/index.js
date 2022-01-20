@@ -119,9 +119,13 @@ const useStyles = makeStyles({
   introTitle: {
     fontFamily: "'Raleway', sans-serif",
     margin: '1px',
-    fontSize: '70px',
-    letterSpacing: '5px',
-    paddingTop: '20px'
+    fontSize: '100px',
+    letterSpacing: '7px',
+    paddingTop: '20px',
+    position: 'absolute',
+    top: '60%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
   },
   introText: {
     marginbottom: '5px',
@@ -132,6 +136,7 @@ const useStyles = makeStyles({
     margin: 'auto'
   },
   imgContainer: {
+    position: 'relative',
     margin: 'auto',
     textAlign: 'center'
   }
