@@ -30,10 +30,10 @@ export const deleteProduct = id => {
   }
 }
 
-export const editProduct = id => {
+export const editProduct = product => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/products/${id}`)
+      const {data} = await axios.put(`/api/products/${product.id}`, product)
       dispatch(_editProduct(data))
     } catch (error) {
       console.log(error)

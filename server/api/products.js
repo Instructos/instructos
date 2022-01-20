@@ -1,8 +1,8 @@
 const router = require('express').Router()
 const adminAuth = require('../auth/adminMiddleware')
 const {Product, Order, OrderItem} = require('../db/models')
-
 // Getting all products
+
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll()
@@ -32,18 +32,19 @@ router.post('/', adminAuth, async (req, res, next) => {
   }
 })
 
-router.delete('/:id', adminAuth, async (req, res, next) => {
-  console.log('req.user', req.user)
+router.put('/:id', adminAuth, async (req, res, next) => {
   try {
-    const id = req.params.id
-    await Product.destroy({
-      where: {
-        id: id
-      }
-    })
-    res.send(`Product id of "${id}" has been deleted`)
-    const product = await Product.create(req.body)
-    res.send(product)
+    const productToUpdate = await Product.findByPk(req.params.id)
+    res.send(await productToUpdate.update(req.body))
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:id', adminAuth, async (req, res, next) => {
+  try {
+    const productToDelete = await Product.findByPk(req.params.id)
+    res.send(productToDelete.destroy(req.body))
   } catch (error) {
     next(error)
   }

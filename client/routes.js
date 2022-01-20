@@ -10,7 +10,9 @@ import {
   Cart,
   Checkout,
   CreateExperience,
-  adminPage
+  adminPage,
+  ProductsAdmin,
+  EditPage
 } from './components'
 import Users from './components/Admin/Users'
 import {me} from './store'
@@ -29,7 +31,12 @@ const Routes = () => {
 
   const isAdmin = useSelector(state => state.user.isAdmin)
   const adminPortal = isAdmin && (
-    <Route exact path="/users" component={AllUsers} />
+    <Switch>
+      <Route exact path="/admin/users" component={AllUsers} />
+      <Route exact path="/admin" component={adminPage} />
+      <Route exact path="/admin/products" component={ProductsAdmin} />
+      <Route path="/admin/createExperience" component={CreateExperience} />
+    </Switch>
   )
   return (
     <Switch>
@@ -41,7 +48,6 @@ const Routes = () => {
       <Route path="/signup" component={Signup} />
       <Route path="/products/:id" component={singleProduct} />
       <Route path="/cart" component={Cart} />
-      <Route path="/createExperience" component={CreateExperience} />
       <Route exact path="/checkout" component={Checkout} />
       {isLoggedIn && (
         <Switch>
@@ -49,7 +55,6 @@ const Routes = () => {
           <Route path="/home" component={UserHome} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/checkout" component={Checkout} />
-          <Route path="/admin" component={adminPage} />
           {adminPortal}
         </Switch>
       )}

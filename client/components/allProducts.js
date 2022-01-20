@@ -3,14 +3,12 @@ import {Link} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {fetchAllProducts} from '../store/allProduct'
 import {
-  Button,
   Grid,
   Card,
   CardActions,
   CardMedia,
   CardContent,
-  Typography,
-  IconButton
+  Typography
 } from '@material-ui/core'
 import {
   createTheme,
