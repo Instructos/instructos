@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {useParams} from 'react-router-dom/cjs/react-router-dom.min'
 import {singleProduct} from '../store/singleProduct'
 import {addOrder} from '../store/orders'
@@ -10,6 +11,7 @@ import {
   Grid,
   Button,
   Popover,
+  Modal,
   Typography,
   Container
 } from '@material-ui/core'
@@ -19,6 +21,21 @@ import {
   MuiThemeProvider,
   makeStyles
 } from '@material-ui/core/styles'
+
+function rand() {
+  return Math.round(Math.random() * 20) - 10
+}
+
+function getModalStyle() {
+  const top = 50 + rand()
+  const left = 50 + rand()
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`
+  }
+}
 
 const theme = createTheme({
   typography: {
@@ -35,8 +52,8 @@ const theme = createTheme({
 const useStyles = makeStyles({
   productName: {
     paddingTop: 25,
-    whiteSpace: 'nowrap',
-    fontSize: '2vw'
+    whiteSpace: 'wrap',
+    fontSize: '4vw'
   },
   instructor: {
     textAlign: 'right',
@@ -58,6 +75,21 @@ const useStyles = makeStyles({
     width: '100vw',
     height: '110px',
     textAlign: 'left'
+  },
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3)
+  },
+  goToCart: {
+    backgroundColor: '#fba63b',
+    color: 'black'
+  },
+  continueShopping: {
+    color: 'grey'
   }
 })
 
@@ -86,6 +118,14 @@ const SingleProduct = () => {
     if (localCart) setCart(localCart)
   }, [])
 
+  //MODAL
+  const [modalStyle] = React.useState(getModalStyle)
+  const [open, setOpen] = React.useState(false)
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   function handleClick(event) {
     event.preventDefault()
 
@@ -98,6 +138,7 @@ const SingleProduct = () => {
           price: product.price * 100
         })
       )
+      setOpen(true)
     } else {
       let cartCopy = [...cart]
       let productId = product.id
@@ -107,6 +148,7 @@ const SingleProduct = () => {
         if (existingItem.quantity < 5) {
           existingItem.quantity += 1
           existingItem.price = product.price * 100 * existingItem.quantity
+          setOpen(true)
         } else {
           alert('5 is the maximum!')
         }
@@ -117,8 +159,10 @@ const SingleProduct = () => {
           price: product.price * 100,
           imageUrl: product.imageUrl,
           productName: product.productName,
-          unitPrice: product.price
+          unitPrice: product.price,
+          instructor: product.instructor
         })
+        setOpen(true)
       }
 
       setCart(cartCopy)
@@ -128,6 +172,18 @@ const SingleProduct = () => {
   }
 
   let classes = useStyles()
+
+  const modalBody = (
+    <div style={modalStyle} className={classes.paper}>
+      <h2 id="simple-modal-title">Added To Cart!</h2>
+      <Link to="/cart">
+        <Button className={classes.goToCart}>Go to Cart</Button>
+      </Link>
+      <Button className={classes.continueShopping} onClick={handleClose}>
+        Continue Shopping
+      </Button>
+    </div>
+  )
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -175,6 +231,14 @@ const SingleProduct = () => {
         >
           Add to Cart
         </Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          {modalBody}
+        </Modal>
       </Typography>
     </MuiThemeProvider>
   )

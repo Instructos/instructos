@@ -38,7 +38,9 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 700
   },
   imageRow: {
-    width: '200px'
+    width: '200px',
+    fontSize: '15px',
+    color: '#4b5bbf'
   },
   img: {
     height: '150px',
@@ -51,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     // letterSpacing: '2px',
     color: '#4b5bbf',
     marginTop: '20px',
-    marginBottom: '5px'
+    marginbottom: '5px'
   },
   tableHeader: {
     fontFamily: "'Raleway', sans-serif",
@@ -59,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     // letterSpacing: '2px',
     color: '#4b5bbf',
     marginTop: '20px',
-    marginBottom: '5px'
+    marginbottom: '5px'
   },
   emptyCartImage: {
     width: '200px',
@@ -71,6 +73,12 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#4b5bbf',
     color: 'white',
     marginTop: '50px'
+  },
+  deleteButton: {
+    border: '1px solid #f0558a'
+  },
+  instructor: {
+    color: 'black'
   }
 }))
 
@@ -177,12 +185,29 @@ const Cart = () => {
                         allProducts.filter(product => {
                           return product.id === item.productId
                         })[0].productName
-                      }
+                      }{' '}
+                      <span className={classes.instructor}>
+                        {' '}
+                        with{' '}
+                        {
+                          allProducts.filter(product => {
+                            return product.id === item.productId
+                          })[0].instructor
+                        }
+                      </span>
                       <br />
-
                       <img
                         className={classes.img}
                         alt="complex"
+                        onClick={() =>
+                          history.push(
+                            `/products/${
+                              allProducts.filter(product => {
+                                return product.id === item.productId
+                              })[0].id
+                            }`
+                          )
+                        }
                         src={
                           allProducts.filter(product => {
                             return product.id === item.productId
@@ -244,7 +269,10 @@ const Cart = () => {
                           handleUpdateQuantity(item.orderId, item.productId, newQuantity)
                         }}>Update Quantity</Button>
                     </FormControl><br></br> */}
-                      <Button onClick={() => handleRemoveFromCart(item.id)}>
+                      <Button
+                        onClick={() => handleRemoveFromCart(item.id)}
+                        className={classes.deleteButton}
+                      >
                         Delete
                       </Button>
                     </div>
@@ -275,7 +303,7 @@ const Cart = () => {
         </Table>
       </TableContainer>
 
-      <Container maxWidth="sm" marginBottom="5px">
+      <Container maxWidth="sm" marginbottom="5px">
         <Button
           type="submit"
           fullWidth

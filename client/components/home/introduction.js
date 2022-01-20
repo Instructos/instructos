@@ -18,9 +18,12 @@ const Introduction = props => {
   return (
     <div className={classes.introContainer}>
       <Box className={classes.introBox}>
-        <h1 align="center" className={classes.introTitle}>
-          INSTRUCTOS
-        </h1>
+        <div className={classes.imgContainer}>
+          <h1 align="center" className={classes.introTitle}>
+            INSTRUCTOS
+          </h1>
+          <img className={classes.homeImage} src="/img/fullstack.jpg" />
+        </div>
         <h4 align="center" className={classes.introText}>
           Unique experiences with your Fullstack Academy<br /> instructors and
           fellows!

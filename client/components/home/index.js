@@ -95,11 +95,12 @@ const useStyles = makeStyles({
     letterSpacing: '2px',
     color: 'white',
     marginTop: '20px',
-    marginBottom: '5px'
+    marginbottom: '5px'
   },
 
   testimonialContainer: {
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    paddingTop: '40px'
   },
 
   introContainer: {
@@ -108,7 +109,7 @@ const useStyles = makeStyles({
 
   introBox: {
     margin: '0 auto',
-    padding: '10px',
+    padding: '30px',
     borderRadius: '10px',
     width: '500px',
     alignText: 'center',
@@ -118,12 +119,26 @@ const useStyles = makeStyles({
   introTitle: {
     fontFamily: "'Raleway', sans-serif",
     margin: '1px',
-    fontSize: '70px',
-    letterSpacing: '5px'
+    fontSize: '100px',
+    letterSpacing: '7px',
+    paddingTop: '20px',
+    position: 'absolute',
+    top: '60%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
   },
   introText: {
-    marginBottom: '5px',
+    marginbottom: '5px',
     marginTop: '1px'
+  },
+  homeImage: {
+    width: '50%',
+    margin: 'auto'
+  },
+  imgContainer: {
+    position: 'relative',
+    margin: 'auto',
+    textAlign: 'center'
   }
 })
 
@@ -152,7 +167,7 @@ const Home = () => {
     <MuiThemeProvider theme={theme}>
       <Introduction classes={classes} />
       <FeaturedExperiences products={products} classes={classes} />
-      <FeaturedInstructors products={products} classes={classes} />
+      {/* <FeaturedInstructors products={products} classes={classes} /> */}
       <Testimonials classes={classes} />
     </MuiThemeProvider>
   )

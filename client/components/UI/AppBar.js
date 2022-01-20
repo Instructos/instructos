@@ -117,12 +117,6 @@ function MenuAppBar({handleClick, isLoggedIn, isAdmin}) {
     }, 0)
   console.log(totalCartQuantity)
 
-  // useEffect(() => {
-  //   if (id) {
-  //     dispatch(getUserCart())
-  //   }
-  // }, [])
-
   useEffect(() => {
     dispatch(getUserCart())
   }, [])
@@ -175,23 +169,26 @@ function MenuAppBar({handleClick, isLoggedIn, isAdmin}) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton aria-label="show orders" color="inherit">
           <Badge badgeContent={4} color="secondary">
-            {/* <MailIcon /> */}
+            <MailIcon />
             <Typography>Order History</Typography>
           </Badge>
         </IconButton>
         <p>Messages</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem>
-        <IconButton aria-label="show cart" color="inherit">
-          <Badge badgeContent={11} color="secondary">
+        <IconButton
+          aria-label="show cart"
+          color="inherit"
+          onClick={() => history.push('/cart')}
+        >
+          <Badge badgeContent={totalCartQuantity} color="secondary">
             {/* <NotificationsIcon /> */}
-            <Typography>Notifications</Typography>
+            <Typography>My Cart</Typography>
           </Badge>
         </IconButton>
-        <p>Notifications</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -274,7 +271,7 @@ function MenuAppBar({handleClick, isLoggedIn, isAdmin}) {
                     <Typography>Admin Portal</Typography>
                   </IconButton>
                 )}
-                <IconButton
+                {/* <IconButton
                   onClick={() => history.push('/orders')}
                   aria-label="show orders"
                   color="inherit"
@@ -282,17 +279,14 @@ function MenuAppBar({handleClick, isLoggedIn, isAdmin}) {
                   <Badge badgeContent={4} color="secondary">
                     <Typography>Order History</Typography>
                   </Badge>
-                </IconButton>
+                </IconButton> */}
                 <IconButton
                   aria-label="show cart"
                   color="inherit"
                   userId={id}
                   onClick={() => location.reload(history.push(`/cart`))}
                 >
-                  <Badge
-                    badgeContent={currentUserCart.length}
-                    color="secondary"
-                  >
+                  <Badge badgeContent={totalCartQuantity} color="secondary">
                     <Typography>My Cart</Typography>
                   </Badge>
                 </IconButton>
